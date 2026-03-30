@@ -1,0 +1,4 @@
+{
+  "revoked_id": "did:example:merchant-0042",
+  "reason": "Authorization withdrawn by the issuing authority"
+}

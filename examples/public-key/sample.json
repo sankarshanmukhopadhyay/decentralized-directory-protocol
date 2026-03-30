@@ -1,0 +1,18 @@
+{
+  "public_key_id": "did:example:acme-payments",
+  "publicKey": "z6MkpExampleCurrentPublicKey",
+  "keyType": "ed25519",
+  "keyFormat": "base58",
+  "entity": {
+    "name": "Acme Payments Ltd.",
+    "url": "https://directory.example.org/entities/acme-payments",
+    "address": "Bengaluru, India"
+  },
+  "previousKeys": [
+    {
+      "publicKey": "z6MkpExamplePreviousPublicKey",
+      "keyType": "ed25519",
+      "keyFormat": "base58"
+    }
+  ]
+}

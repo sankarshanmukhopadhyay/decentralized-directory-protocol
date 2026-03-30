@@ -1,0 +1,9 @@
+{
+  "subscriber_id": "network-participant.example.org",
+  "url": "https://network-participant.example.org/callback",
+  "type": "BPP",
+  "domain": "mobility",
+  "countries": ["IND"],
+  "signing_public_key": "z6MkpExampleSigningKey",
+  "encr_public_key": "z6MkpExampleEncryptionKey"
+}

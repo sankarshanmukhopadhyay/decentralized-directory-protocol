@@ -1,101 +1,235 @@
-# Decentralized Directory (DeDi): Enhancing Trust in Digital Transactions
+# DeDi: Decentralized Directory Protocol
 
-## The Problem: Slow, Expensive Verification. High-cost of establishing trust!
+DeDi is an open protocol for publishing and consuming **public, machine-readable directories** that are needed to verify digital transactions, credentials, participants, memberships, keys, and revocation status.
 
-> DeDi solves costly verification problems. Businesses spend time and resources checking if documents, credentials, and data are valid. DeDi creates a universal way to verify public information instantly.
+In practical terms, DeDi gives developers and operators a common way to answer questions such as:
 
-> DeDi enables discovery of public keys, of up-to-date revocation lists, membership lists, sanctions list and other such positive/negative lists published by the sources of truth, making it easy to establish trust in the agentic AI world!
+- Which public key should I trust for this entity right now?
+- Is this participant currently registered, authorized, or revoked?
+- Where can I discover the source-of-truth registry for this namespace?
+- How can I integrate multiple public registries without custom logic for each one?
 
-Every day, people carry out millions of digital transactions, which underpin the global economy. Trust, enabled by secure, interoperable, and efficient digital systems, serves as the foundation of this massive digital economy.
+This repository is the starting point for understanding the protocol, the core schemas, and how to build with them.
 
-Establishing trust by verifying the integrity, validity, and authenticity of documents, digital credentials, transactions, or data packets is paramount for seamless execution of these transactions. While integrity can often be verified through digital signatures, ensuring validity (is the information current, not revoked?) and authenticity (is the source trustworthy?) remains a significant challenge. (For details on Integrity, Validity, and Authenticity, refer to ‘Understanding Trust Pillars’ in Appendix)
+## Why developers should care
 
-In our interconnected digital world, trust is established through public information maintained by custodians, registrars, and institutions of authority. These are often referred to as public directories – specialized electronic registries containing publicly available information about entities and things. Examples include directories of companies, banks, courts, language codes, location codes, directories of registered professionals (e.g., doctors, lawyers), a directory of government-authorized service providers, and more such directories. Historically, even "Yellow Pages" served as a form of public directory.
+Most verification stacks already know how to check **integrity**. The harder problem is operational trust:
 
-Currently, establishing this trust involves:
+- discovering the right source of truth,
+- retrieving the current state of a record,
+- checking whether something has been revoked or superseded,
+- and doing this consistently across multiple registries.
 
-- **Inefficient Processes, leading to Higher Costs:**  Organizations spend excessive time and resources manually searching for and verifying critical information. These outdated methods can slow down operations, increase labor costs, and introduce errors that damage reliability.
+That is the gap DeDi is intended to close.
 
-- **Risk of Bad Decisions due to Delayed or Outdated Information:**  When up-to-date information isn’t readily available, businesses may miss important updates (like revoked credentials), potentially making wrong decisions or exposing themselves to fraud and security risks.
+## What DeDi is
 
-- **Difficult Integrations result in Missed Opportunities and Slower Growth:**  Inconsistent and custom-built interfaces make it hard for businesses to connect with multiple registries. This adds integration costs, delays time-to-market, and hinders innovation or expansion into new markets where interoperability is key.
+DeDi is:
 
-DeDi overcomes these challenges by transforming fragmented and inefficient registries—whether manual or digital—into advanced, AI-ready directories. This empowers businesses with instant access to reliable information, streamlined processes, and seamless integration for the demands of the digital age. It provides a unified, machine-readable interface for accessing essential public information, fostering secure and efficient digital transactions.
+- a protocol and schema layer for public directories,
+- an interoperability approach for lookup, query, and trust discovery,
+- a way to make registries easier to integrate into verification flows,
+- a foundation that can support multiple ecosystems and data models.
 
-## Decentralized Directory Protocol – universal way to discover & verify public information
-DeDi unlocks new business value by making public directories accessible through a universal protocol coupled with suggested practices.
+DeDi is **not**:
 
-|                     **Business Value**                    |                   **How It Helps Your Business**                  |                           **Capability Enabling It**                           |
-| :---------------------------------------------------: | :-----------------------------------------------------------: | :------------------------------------------------------------------------: |
-|         Instantly access reliable information         | Make faster, more accurate business decisions with confidence |          Machine-Readable APIs: Standardized, programmable access          |
-|      Know the source and history of every record      |         Simplify compliance and increase transparency         | Provenance Tracking & Audit Trails: Recorded authorship and change history |
-|       Trust your data and protect against fraud       |             Strengthen security and customer trust            |       Cryptographic Tamper-Resistance: Immutable, verifiable records       |
-|    Find and use the data you need, without barriers   |       Improve efficiency and serve more customers easily      |           Public, Interoperable Interfaces: Uniform, open access           |
-|    Minimize costs and future-proof your operations    |   Stay agile and ready for growth with seamless integration   |   Compatibility Layers & Modular Integration: Works with current systems   |
-| Always make decisions based on the latest information |       Reduce risk by avoiding outdated or incorrect data      |  Live Sync & Frequent Updates: Real-time or near-real-time record updates  |
+- a single software product,
+- a requirement to replace an existing registry,
+- a blockchain mandate,
+- or a closed hosted service.
 
+A hosted implementation such as `dedi.global` can accelerate adoption, but the protocol itself should be understood independently from any one deployment.
 
+## Who this repo is for
 
-The Decentralized Directory (DeDi) is an open specification for a unified interface to access public directories. It doesn't prescribe changes to existing processes but defines characteristics that make public directories suitable for enhancing trust at a low cost. A good public directory is (one or more of the following):
+This repo should be useful to four main audiences:
 
-- **Publicly Accessible:** Allows anyone to look up specific records or query for multiple records, promoting transparency and broad usability.
+### 1. Registry operators
+You maintain a public registry or authoritative directory and want to expose it through a more consistent, machine-readable interface.
 
-- **Machine-Readable:** Accessible over standard APIs (HTTPS, RESTful) with well-known schemas for easy programmatic interpretation and automation.
+### 2. Verifier and relying-party developers
+You need to look up public keys, membership status, revocation information, or participant metadata inside verification and onboarding workflows.
 
-- **Tamper-Resistant:** Offers cryptographic guarantees to ensure the immutability and verifiability of records, enabling a "trust, but verify" approach.
-Provenance-Enabled: Provides authorship of entries and a history of changes, allowing access to earlier versions for transparency and auditability.
+### 3. Ecosystem architects
+You are designing a trust network, registry layer, or discovery mechanism and want a reusable pattern rather than bespoke integrations.
 
-- **Live and Frequently Updated:** Ensures that information such as membership statuses, sanctions, and public keys is always up-to-date, reducing risks associated with outdated data.
+### 4. Contributors
+You want to improve the schemas, examples, guidance, and implementation pathway for the protocol.
 
-## How Does DeDi Enable This?
+## The fastest way to understand the project
 
-At its core, DeDi is an open protocol that defines universal, standardized API specifications for accessing any public registry, enabling seamless lookup and querying across diverse information sources. By providing open-source API specifications (available at https://github.com/finternet-io/dedi), DeDi eliminates the need for costly custom integrations, allowing registrars to implement a unified and consistent interface for public information access.
+Start here in this order:
 
-DeDi’s information architecture is organized around three key constructs:
+1. Read this README for the project frame.
+2. Read [docs/architecture.md](docs/architecture.md) for the protocol model.
+3. Read [docs/build-with-dedi.md](docs/build-with-dedi.md) for implementation patterns.
+4. Inspect the example records in [`examples/`](examples/).
+5. Review the schemas in [`schemas/`](schemas/).
+6. Import the Postman collection in [`api/dedi_postman_collection.json`](api/dedi_postman_collection.json).
 
-- **Namespace:** Corresponds to an organization (and implicitly to a domain name) as a starting point for trust.
+## Quick start
 
-- **Directory:** Refers to a list of records with configurable schemas.
+### For consumers of a DeDi-compatible directory
 
-- **Records:** The actual values or pointers to information.
+1. Identify the directory or namespace you trust.
+2. Determine which schema the directory uses.
+3. Perform a lookup or query against the directory endpoint.
+4. Validate the returned payload against the corresponding JSON schema.
+5. Use the result in your decision flow, such as:
+   - key discovery,
+   - revocation checking,
+   - participant lookup,
+   - membership verification.
 
-> Important Note: The Decentralized Directory Protocol is not a software product or a rigid implementation manual—it is an open standard designed to enable trust in digital transactions by providing a universal, interoperable foundation for accessing and verifying public information.
+### For publishers and registry operators
 
-## dedi.global – ready to use solution
+1. Choose the directory type you want to expose.
+2. Map your existing records to one or more DeDi schemas.
+3. Publish the records through a stable API.
+4. Ensure records are current, public where appropriate, and traceable to an authoritative source.
+5. Add examples and implementation notes so integrators know how to consume your directory.
 
-To accelerate and simplify adoption, a ready-to-use hosted platform – dedi.global, is offered by the Network for Humanity Foundation. This philanthropic initiative allows registrars to effortlessly publish and manage their directories on a robust decentralized infrastructure, leveraging blockchain for automated governance, scalability, and enhanced trust—complementing and fully aligned with the open DeDi protocol.
+A more detailed implementation path is available in [docs/adoption-guide.md](docs/adoption-guide.md).
 
-By adopting the DeDi Protocol, relying parties can maintain a list of trusted domains and seamlessly query and look up public information, verifying digital assets and identities with unprecedented ease and confidence.
+## Core information model
 
-DeDi supports the co-existence of multiple data standards and schemas (e.g., VC JSON-LD, mDocs/mDL) and can output information in various formats, ensuring compatibility with existing systems and technologies. This makes it secure, trustworthy, and easy to use at scale, without disrupting your existing operations.
+DeDi is organized around three simple constructs.
 
-## Get Started
+### Namespace
+A namespace is the trust and discovery starting point. In practice this often maps to an organization and, frequently, to a domain name.
 
-Your participation is crucial to the success of this initiative. Here's how you can help us build a more secure digital future:
+### Directory
+A directory is a collection of records exposed under a schema. A directory may represent public keys, memberships, revocations, subscribers, or another well-defined record class.
 
-- Claim Your Namespace: Register your organization on dedi.global. Publish your first directory!
-- Adopt the DeDi Protocol to start looking up and querying public records in verification flows. Connect your verification systems to dedi.global.
-- Implement the DeDi APIs in your existing public registries to make them accessible.
+### Record
+A record is the individual item that a verifier, integrator, or relying party retrieves and acts upon.
 
-Let’s co-create a future where trust is seamlessly integrated into every digital transaction.
+## What you can build with it
 
----
+DeDi is especially useful when you need **current public state** as part of a trust decision. Common patterns include:
 
-## Appendix: Three types of verification
+- **Public key discovery** for signature verification.
+- **Revocation or deny-list lookup** before accepting a credential, entity, or transaction.
+- **Membership and affiliation checks** for gated access or ecosystem participation.
+- **Participant registries** for network discovery, such as Beckn participants and endpoints.
+- **Reference registries** that point to other DeDi-compatible records or registries.
 
-In the digital world, establishing trust in any piece of information, whether it's a document, a transaction, or a digital credential, relies on three fundamental pillars: Integrity, Validity, and Authenticity.
+See [docs/use-cases.md](docs/use-cases.md) for concrete examples.
 
-### Integrity:
-- _What it means:_ Integrity means no changes. The data matches the original exactly. Integrity check means to verify if the information has not been changed, altered, or tampered with since it was originally created or issued. It's about making sure the data is exactly as the sender intended it to be, without any unauthorized modifications.
-- _How it's checked:_ This is often verified using digital signatures or cryptographic hash functions. A unique "fingerprint" of the data is created when it's issued. If even a single character is changed, the fingerprint will no longer match, indicating tampering.
-- _Example:_ Imagine a digital degree certificate. If someone tries to change your grade from a 'B' to an 'A' after it's been issued, the integrity check would fail because the digital signature on the certificate would no longer be valid for the altered content.
+## Repository structure
 
-### Validity:
-- _What it means:_ Validity means still good. The information hasn't expired or been canceled. Validity check means to verify if the information is still current, relevant, and has not been revoked, expired, or superseded. It addresses whether the information is still "good" to use at the present time.
-- _How it's checked:_ This typically involves checking against revocation lists (lists of certificates or credentials that have been cancelled), expiration dates, or updated versions of the information.
-- _Example:_ A digital driver's license has an expiration date. Even if it's authentic and hasn't been tampered with, it becomes invalid after that date. Similarly, a digital certificate issued to a company might be revoked if the company goes out of business or its security is compromised.
+```text
+.
+├── README.md
+├── CONTRIBUTING.md
+├── docs/
+│   ├── adoption-guide.md
+│   ├── architecture.md
+│   ├── build-with-dedi.md
+│   ├── roadmap.md
+│   └── use-cases.md
+├── api/
+│   ├── README.md
+│   └── dedi_postman_collection.json
+├── examples/
+│   ├── README.md
+│   ├── beckn-subscriber/
+│   ├── beckn-subscriber-reference/
+│   ├── membership/
+│   ├── public-key/
+│   └── revoke/
+└── schemas/
+    ├── README.md
+    ├── Beckn_subscriber.json
+    ├── Beckn_subscriber_reference.json
+    ├── membership.json
+    ├── public_key.json
+    └── revoke.json
+```
 
-### Authenticity:
-- _What it means:_ Authenticity means real source. The information comes from who it claims to come from. Authenticity check means to verify if the source of the information is genuinely who or what it claims to be. It's about trusting the origin of the data.
-- _How it's checked:_ This is established by verifying the digital signature against the issuer's publicly listed digital certificate, public key, or other trusted identifiers. It also involves checking if the issuer is a recognized and authorized entity (e.g., a university accredited to issue degrees, a bank licensed to operate).
-- _Example:_ If you receive a digital invoice, authenticity ensures that it truly came from the company you did business with, not a fraudster pretending to be them. You would check the company's digital signature and verify that the signing certificate was issued by a trusted Certificate Authority and that the company is a legitimate, registered business.
+## Available schemas
+
+| Schema | Purpose | Typical use |
+|---|---|---|
+| `public_key.json` | Current public key material and prior keys | Verify signatures, discover trusted keys |
+| `revoke.json` | Negative list or revocation entry | Reject revoked entities, credentials, or members |
+| `membership.json` | Public membership / affiliation status | Check participation, enrollment, or standing |
+| `Beckn_subscriber.json` | Beckn network participant registry entry | Discover subscriber endpoints and keys |
+| `Beckn_subscriber_reference.json` | Reference to another subscriber registry or record | Federation, delegation, or indirection |
+
+See [schemas/README.md](schemas/README.md) for field-level notes and implementation considerations.
+
+## Adoption priorities
+
+If the goal is broader ecosystem adoption, the highest-leverage moves are usually:
+
+1. **Clear examples** developers can copy.
+2. **Predictable schemas** with stable field semantics.
+3. **Concrete integration guidance** for both publishers and consumers.
+4. **Simple discovery conventions** so developers know where to start.
+5. **Visible governance and contribution process** so the project feels alive and evolvable.
+
+This repository now includes the first three directly. The remaining two are called out in [docs/roadmap.md](docs/roadmap.md).
+
+## Design principles
+
+DeDi works best when directories are:
+
+- **Publicly accessible** where policy permits.
+- **Machine-readable** with stable schemas.
+- **Authoritative** with a clear source of truth.
+- **Current** so verifiers are not acting on stale state.
+- **Traceable** so provenance and change history can be understood.
+- **Composable** so multiple schemas and ecosystems can coexist.
+
+## Working with the schemas
+
+The schemas in this repository are JSON Schema documents that can be used to:
+
+- validate payloads during development,
+- document record formats,
+- support testing and conformance,
+- reduce ambiguity for integrators.
+
+Recommended implementation practice:
+
+- validate every record at publish time,
+- validate every response at integration time,
+- version breaking schema changes explicitly,
+- and publish example payloads alongside APIs.
+
+## Build something with it
+
+If you are trying to move from understanding to implementation, go straight to:
+
+- [docs/build-with-dedi.md](docs/build-with-dedi.md) for application patterns,
+- [examples/README.md](examples/README.md) for sample payloads,
+- [api/README.md](api/README.md) for working with the Postman collection.
+
+## Get involved
+
+- Open an issue with a concrete protocol, schema, or documentation improvement.
+- Contribute examples from real registries.
+- Propose additional record classes and interoperability mappings.
+- Help tighten validation, discovery, and adoption guidance.
+
+Contribution guidance is in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Appendix: the three trust checks DeDi helps operationalize
+
+### Integrity
+Has the data been altered?
+
+Integrity is typically checked with digital signatures or hashes.
+
+### Validity
+Is the data still current and usable?
+
+Validity often depends on revocation status, expiry, replacement, or other current-state checks.
+
+### Authenticity
+Does the data come from an authoritative source?
+
+Authenticity depends on trustworthy provenance, discoverable keys, and confidence that the directory being queried is the correct source of truth.
+
+DeDi is most useful in the second and third layers, where many existing systems are still fragmented, manual, or costly to integrate.

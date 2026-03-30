@@ -1,0 +1,5 @@
+{
+  "subscriber_id": "network-federation.example.org",
+  "url": "https://directory.example.org/beckn/participants/network-participant.example.org",
+  "type": "Record"
+}
