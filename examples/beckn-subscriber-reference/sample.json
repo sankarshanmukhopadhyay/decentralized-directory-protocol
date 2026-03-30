@@ -1,5 +1,5 @@
 {
-  "subscriber_id": "network-federation.example.org",
-  "url": "https://directory.example.org/beckn/participants/network-participant.example.org",
+  "subscriber_id": "nfo.example.org",
+  "url": "https://directory.example.org/dedi/lookup/nfo/subscribers/buyer.example.org",
   "type": "Record"
 }

@@ -1,31 +1,56 @@
 {
   "$id": "https://dedi.global/membership.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "Membership. This schema is used to establish membership of person/entity to a club, an entity in a larger consortium, or even can be citizenship of a country. Think of this as 'Affiliation'",
+  "title": "Membership",
+  "description": "This schema is used to represent public membership or affiliation status of a person or entity.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "membership_id": {
       "type": "string",
-      "description": "Unique membership ID"
+      "description": "Unique membership identifier within a namespace."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "expired",
+        "revoked"
+      ],
+      "description": "Current membership status."
+    },
+    "issuer": {
+      "type": "string",
+      "description": "Identifier of the authority publishing the membership state."
     },
     "detail": {
       "type": "object",
-      "description": "Public details of the member",
+      "description": "Public details of the member.",
+      "additionalProperties": false,
       "properties": {
-        "name": { "type": "string" },
-        "url": { "type": "string", "format": "url" },
-        "address": { "type": "string" },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "address": {
+          "type": "string"
+        },
         "publicKey": {
           "type": "string",
-          "description": "this can be a url/uri pointing to DeDi public key registry entry, or even DID"
+          "description": "URL/URI pointing to a DeDi public-key record or equivalent identifier."
         }
       },
-      "required": ["name"],
-      "additionalProperties": true
+      "required": [
+        "name"
+      ]
     },
     "evidence": {
-      "description": "Evidence of membership (if any). Can be URL also",
-      "type": "string"
+      "type": "string",
+      "description": "Evidence of membership, such as a URI or document identifier."
     },
     "memberSince": {
       "type": "string",
@@ -36,5 +61,10 @@
       "format": "date"
     }
   },
-  "required": ["membership_id", "detail"]
+  "required": [
+    "membership_id",
+    "status",
+    "issuer",
+    "detail"
+  ]
 }

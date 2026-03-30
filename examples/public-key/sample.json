@@ -1,18 +1,22 @@
 {
-  "public_key_id": "did:example:acme-payments",
-  "publicKey": "z6MkpExampleCurrentPublicKey",
-  "keyType": "ed25519",
-  "keyFormat": "base58",
+  "public_key_id": "did:example:merchant-123",
+  "publicKey": "-----BEGIN PUBLIC KEY-----MIIB...-----END PUBLIC KEY-----",
+  "keyType": "Ed25519",
+  "keyFormat": "PEM",
+  "activatedAt": "2026-03-01T00:00:00Z",
   "entity": {
-    "name": "Acme Payments Ltd.",
-    "url": "https://directory.example.org/entities/acme-payments",
-    "address": "Bengaluru, India"
+    "name": "Merchant One",
+    "url": "https://merchant.example.org",
+    "address": "Kolkata, India"
   },
   "previousKeys": [
     {
-      "publicKey": "z6MkpExamplePreviousPublicKey",
-      "keyType": "ed25519",
-      "keyFormat": "base58"
+      "keyId": "merchant-123-key-2025",
+      "publicKey": "abc123==",
+      "keyType": "Ed25519",
+      "keyFormat": "base64url",
+      "revokedAt": "2026-02-28T12:00:00Z",
+      "reason": "routine-rotation"
     }
   ]
 }

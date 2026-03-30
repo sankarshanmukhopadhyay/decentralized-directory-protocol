@@ -1,9 +1,10 @@
 {
-  "subscriber_id": "network-participant.example.org",
-  "url": "https://network-participant.example.org/callback",
-  "type": "BPP",
-  "domain": "mobility",
-  "countries": ["IND"],
-  "signing_public_key": "z6MkpExampleSigningKey",
-  "encr_public_key": "z6MkpExampleEncryptionKey"
+  "subscriber_id": "buyer.example.org",
+  "url": "https://buyer.example.org/callback",
+  "type": "BAP",
+  "domain": "retail",
+  "countries": [
+    "IND"
+  ],
+  "signing_public_key": "BASE64PUBKEY"
 }

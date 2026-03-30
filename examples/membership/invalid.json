@@ -1,0 +1,9 @@
+{
+  "membership_id": "member-001",
+  "detail": {
+    "name": "Alice Example",
+    "__proto__": {
+      "isAdmin": true
+    }
+  }
+}

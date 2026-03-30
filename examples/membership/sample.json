@@ -1,12 +1,12 @@
 {
-  "membership_id": "member-2026-001",
+  "membership_id": "member-001",
+  "status": "active",
+  "issuer": "org.example.membership-authority",
   "detail": {
-    "name": "Open Mobility Network Participant",
-    "url": "https://directory.example.org/members/member-2026-001",
-    "address": "Mumbai, India",
-    "publicKey": "did:example:member-2026-001#key-1"
+    "name": "Alice Example",
+    "url": "https://example.org/members/alice"
   },
-  "evidence": "https://directory.example.org/evidence/member-2026-001",
-  "memberSince": "2025-01-01",
+  "evidence": "https://example.org/evidence/member-001",
+  "memberSince": "2024-01-01",
   "memberTill": "2026-12-31"
 }

@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: DeDi API
+  version: 0.1.0
+  description: Initial OpenAPI contract for the DeDi query, lookup, and versions surface.
+servers:
+  - url: https://api.dedi.global
+paths:
+  /dedi/query/{namespace}:
+    get:
+      summary: Query a namespace
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/as_on'
+      responses:
+        '200':
+          description: Namespace query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /dedi/query/{namespace}/{registry}:
+    get:
+      summary: Query a registry within a namespace
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/registry'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/as_on'
+      responses:
+        '200':
+          description: Registry query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /dedi/lookup/{namespace}/{registry}/{record}:
+    get:
+      summary: Lookup a record
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/registry'
+        - $ref: '#/components/parameters/record'
+        - $ref: '#/components/parameters/as_on'
+        - name: version_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Record lookup response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+  /dedi/versions/{namespace}/{registry}/{record}:
+    get:
+      summary: List available historical versions for a record
+      parameters:
+        - $ref: '#/components/parameters/namespace'
+        - $ref: '#/components/parameters/registry'
+        - $ref: '#/components/parameters/record'
+      responses:
+        '200':
+          description: Record versions response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  parameters:
+    namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    registry:
+      name: registry
+      in: path
+      required: true
+      schema:
+        type: string
+    record:
+      name: record
+      in: path
+      required: true
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+    page_size:
+      name: page_size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+    as_on:
+      name: as_on
+      in: query
+      schema:
+        type: string
+        format: date-time
+  responses:
+    Error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Envelope:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+        data:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+        schema:
+          type: string
+        version_id:
+          type: string
+      required: [message, data]
+    Error:
+      type: object
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+      required: [code, message]

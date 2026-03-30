@@ -1,0 +1,10 @@
+{
+  "subscriber_id": "buyer example org",
+  "url": "not-a-url",
+  "type": "BAP",
+  "countries": [
+    "IND"
+  ],
+  "domain": "retail",
+  "signing_public_key": "BASE64PUBKEY"
+}

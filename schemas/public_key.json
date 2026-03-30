@@ -1,55 +1,120 @@
 {
-    "$id": "https://dedi.global/public_key.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Public Key Directory",
-    "description": "This schema is used to get public key details from the public directory for a given entity",
-    "type": "object",
-    "properties": {
-	"public_key_id": {
-	    "type": "string",
-	    "description": "Unique ID of the entity"
-	},
-	"publicKey": {
-	    "type": "string",
-	    "description": "currently active public key"
-	},
-	"keyType": {
-	    "type": "string",
-	    "description": "RSA2048, Edcsa, ed25519"
-	},
-	"keyFormat": {
-	    "type": "string",
-	    "description": "base58, base64, hex, x.509 etc etc"
-	},
-	"entity": {
-	    "type": "object",
-	    "description": "Public details of the entity",
-	    "properties": {
-		"name": { "type": "string" },
-		"url": { "type": "string", "format": "url"},
-		"address": { "type": "string" }
-	    },
-	    "required": ["name"],
-	    "additionalProperties": true
-	},
-	"previousKeys": {
-	    "type": "array",
-	    "items": {
-		"type": "object",
-		"properties": {
-		    "publicKey": {
-			"type": "string"
-		    },
-		    "keyType": {
-			"type": "string"
-		    },
-		    "keyFormat": {
-			"type": "string"
-		    }
-		},
-		"additionalProperties": true
-	    }
-	}
+  "$id": "https://dedi.global/public_key.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Public Key Directory",
+  "description": "This schema is used to publish active and historical public key details for a given entity.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "public_key_id": {
+      "type": "string",
+      "description": "Canonical identifier of the entity or principal."
     },
-    "required": [ "public_key_id", "publicKey", "keyType"]
+    "publicKey": {
+      "type": "string",
+      "description": "Currently active public key material."
+    },
+    "keyType": {
+      "type": "string",
+      "enum": [
+        "Ed25519",
+        "P-256",
+        "RSA2048",
+        "RSA3072"
+      ],
+      "description": "Allowed key algorithms for interoperable verification."
+    },
+    "keyFormat": {
+      "type": "string",
+      "enum": [
+        "PEM",
+        "JWK",
+        "base64url",
+        "hex"
+      ],
+      "description": "Encoding format of the active public key."
+    },
+    "activatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "retiredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entity": {
+      "type": "object",
+      "description": "Public details of the entity.",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "previousKeys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "keyId": {
+            "type": "string"
+          },
+          "publicKey": {
+            "type": "string"
+          },
+          "keyType": {
+            "type": "string",
+            "enum": [
+              "Ed25519",
+              "P-256",
+              "RSA2048",
+              "RSA3072"
+            ]
+          },
+          "keyFormat": {
+            "type": "string",
+            "enum": [
+              "PEM",
+              "JWK",
+              "base64url",
+              "hex"
+            ]
+          },
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "keyId",
+          "publicKey",
+          "keyType",
+          "keyFormat",
+          "revokedAt"
+        ]
+      }
+    }
+  },
+  "required": [
+    "public_key_id",
+    "publicKey",
+    "keyType",
+    "keyFormat",
+    "activatedAt"
+  ]
 }

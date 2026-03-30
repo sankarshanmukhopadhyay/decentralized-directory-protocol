@@ -1,19 +1,8 @@
-# API assets
+# API notes
 
-This folder contains the Postman collection for exploring DeDi APIs.
+This directory contains:
 
-## Suggested usage
+- `openapi.yaml`: the initial machine-readable API contract for DeDi endpoints described by this repository.
+- `dedi_postman_collection.json`: the Postman collection for exploratory and manual testing.
 
-1. Import `dedi_postman_collection.json` into Postman.
-2. Point the requests at a DeDi-compatible implementation.
-3. Inspect lookup and query patterns.
-4. Compare responses with the schemas in `../schemas/`.
-5. Save example responses for developer documentation and tests.
-
-## Recommendation
-
-Where possible, pair the Postman collection with:
-
-- schema validation,
-- example payloads from `../examples/`,
-- and written endpoint semantics from the relevant implementation.
+Use the OpenAPI document as the primary contract reference. Use the Postman collection as an implementation aid, not as the sole source of truth.

@@ -107,3 +107,10 @@ If you want a practical first implementation sprint, do this:
 ## Suggested next moves for builders
 
 After reading this document, the next best step is usually to open the examples folder and map one of the schemas to your own verification flow.
+
+
+## Related references
+
+- [Protocol specification](protocol-spec.md)
+- [Verifier guide](verifier-guide.md)
+- [Operator guide](operator-guide.md)
