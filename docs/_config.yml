@@ -10,7 +10,7 @@ baseurl: "/decentralized-directory-protocol"
 # Theme
 remote_theme: just-the-docs/just-the-docs@v0.10.0
 
-# Colour scheme — "default" (light) or "dark"
+# Colour scheme
 color_scheme: default
 
 # Search
@@ -20,17 +20,13 @@ search:
   previews: 3
   preview_words_before: 5
   preview_words_after: 10
-  tokenizer_separator: /[\s/]+/
   rel_url: true
   button: false
 
-# Navigation
-nav_sort: order   # order | case_sensitive | case_insensitive
-nav_external_links:
-  - title: GitHub
-    url: https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol
+# Navigation — nav_order front matter controls order automatically
+nav_sort: case_insensitive
 
-# Aux links (top-right)
+# Aux links (top-right header)
 aux_links:
   "GitHub ↗":
     - "https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol"
@@ -50,7 +46,6 @@ gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
 # Callouts
-callouts_level: quiet
 callouts:
   highlight:
     color: yellow
@@ -78,14 +73,14 @@ back_to_top_text: "Back to top"
 # Heading anchors
 heading_anchors: true
 
-# Markdown processor
+# Markdown
 markdown: kramdown
 kramdown:
   syntax_highlighter_opts:
     block:
       line_numbers: false
 
-# Plugins (GitHub Pages whitelist)
+# Plugins (GitHub Pages safe list)
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
