@@ -1,3 +1,8 @@
+---
+title: "Discovery Conventions"
+nav_order: 1
+parent: "Build & Integrate"
+---
 # Discovery conventions
 
 This document defines how clients locate namespaces, directories, and schema usage in a DeDi deployment. Following these conventions makes integration predictable and removes the need for bespoke discovery logic.

@@ -1,3 +1,8 @@
+---
+title: "Conformance Overview"
+nav_order: 2
+parent: "Adoption & Conformance"
+---
 # Conformance overview
 
 The repository includes a starter conformance surface so that compatibility claims can be grounded in observable behavior rather than prose alone.

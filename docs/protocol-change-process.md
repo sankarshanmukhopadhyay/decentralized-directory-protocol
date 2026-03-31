@@ -1,3 +1,8 @@
+---
+title: "Protocol Change Process"
+nav_order: 3
+parent: "Protocol Specification"
+---
 # Protocol change process
 
 This document defines how substantive changes to the DeDi protocol, schemas, or API contract are proposed, discussed, and accepted. It replaces informal ad-hoc discussion for anything that affects interoperability or compatibility.

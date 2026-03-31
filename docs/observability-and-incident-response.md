@@ -1,3 +1,8 @@
+---
+title: "Observability & Incidents"
+nav_order: 1
+parent: "Operations & Security"
+---
 # Observability and incident response
 
 ## Minimum logs

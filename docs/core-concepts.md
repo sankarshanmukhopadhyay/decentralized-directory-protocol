@@ -1,3 +1,7 @@
+---
+title: "Core Concepts"
+nav_order: 3
+---
 # Core concepts
 
 This page defines the minimum conceptual model needed to read the rest of the repository without constantly translating terms.

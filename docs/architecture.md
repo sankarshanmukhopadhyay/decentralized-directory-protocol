@@ -1,3 +1,7 @@
+---
+title: "Architecture"
+nav_order: 4
+---
 # DeDi architecture and protocol model
 
 This document explains DeDi in implementation terms rather than presentation terms.

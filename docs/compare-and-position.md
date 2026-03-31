@@ -1,3 +1,8 @@
+---
+title: "Compare & Position"
+nav_order: 1
+parent: "Adoption & Conformance"
+---
 # Compare and position
 
 DeDi becomes easier to evaluate when compared against adjacent patterns.

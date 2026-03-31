@@ -1,3 +1,8 @@
+---
+title: "Federation"
+nav_order: 6
+parent: "Build & Integrate"
+---
 # Federation and cross-registry discovery
 
 This document describes how DeDi handles federation: the ability to discover and consume records that span multiple registries or namespaces without bespoke integration logic for each one.

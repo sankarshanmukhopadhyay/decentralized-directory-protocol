@@ -1,3 +1,8 @@
+---
+title: "Use Cases"
+nav_order: 2
+parent: "Build & Integrate"
+---
 # Use cases
 
 This document grounds the repository in concrete developer and ecosystem scenarios.

@@ -1,3 +1,8 @@
+---
+title: "Protocol Specification"
+nav_order: 7
+has_children: true
+---
 # DeDi protocol specification
 
 ## Status

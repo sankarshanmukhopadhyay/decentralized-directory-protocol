@@ -1,3 +1,7 @@
+---
+title: "Glossary"
+nav_order: 10
+---
 # Glossary
 
 ## Namespace

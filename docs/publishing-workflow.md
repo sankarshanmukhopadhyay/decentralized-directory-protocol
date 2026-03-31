@@ -1,3 +1,8 @@
+---
+title: "Publishing Workflow"
+nav_order: 5
+parent: "Build & Integrate"
+---
 # Publishing workflow
 
 ## Typical publisher sequence

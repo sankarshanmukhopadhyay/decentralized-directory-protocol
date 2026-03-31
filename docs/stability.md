@@ -1,3 +1,8 @@
+---
+title: "Stability"
+nav_order: 3
+parent: "Adoption & Conformance"
+---
 # Stability and maturity guidance
 
 This repository should be read as an implementation-oriented draft with a stronger developer experience than a minimal specification dump.

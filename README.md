@@ -4,6 +4,10 @@
 ![CI](https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol/actions/workflows/validate.yml/badge.svg)
 ![Schemas](https://img.shields.io/badge/schemas-json--schema-informational)
 ![License](https://img.shields.io/badge/license-Apache--2.0-lightgrey)
+![Docs site](https://img.shields.io/badge/docs-live-brightgreen)
+
+
+> 📖 **Documentation site:** [sankarshanmukhopadhyay.github.io/decentralized-directory-protocol](https://sankarshanmukhopadhyay.github.io/decentralized-directory-protocol/)
 
 DeDi is an open protocol for publishing, discovering, and consuming **public, machine-readable directory data** needed to verify participants, memberships, public keys, endpoints, and revocation status across ecosystems.
 

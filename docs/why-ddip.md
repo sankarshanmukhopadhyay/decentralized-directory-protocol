@@ -1,3 +1,7 @@
+---
+title: "Why DeDi"
+nav_order: 2
+---
 # Why DeDi exists
 
 Most trust systems eventually hit the same operational bottleneck. A verifier can validate a signature, but still needs to know which public key is current, whether the entity is still recognized, whether a credential or participant has been revoked, and which registry is authoritative for the namespace in question.

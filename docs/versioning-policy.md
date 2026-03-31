@@ -1,3 +1,8 @@
+---
+title: "Versioning Policy"
+nav_order: 2
+parent: "Protocol Specification"
+---
 # Versioning policy
 
 The repository uses semantic versioning principles for protocol and schema evolution. This document defines what constitutes a breaking change, how deprecation works, and what migration support is expected.

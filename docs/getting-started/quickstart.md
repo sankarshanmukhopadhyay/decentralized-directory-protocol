@@ -1,3 +1,8 @@
+---
+title: "Quickstart"
+nav_order: 1
+parent: "Getting Started"
+---
 # Quickstart
 
 This quickstart is the fastest route from zero to a working mental model.

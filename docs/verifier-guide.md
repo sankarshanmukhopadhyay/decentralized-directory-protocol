@@ -1,3 +1,8 @@
+---
+title: "Verifier Guide"
+nav_order: 3
+parent: "Build & Integrate"
+---
 # Verifier integration guide
 
 This guide is for relying parties that need to consume DeDi safely.

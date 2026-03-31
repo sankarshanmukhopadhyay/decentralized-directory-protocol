@@ -1,3 +1,8 @@
+---
+title: "Operator Guide"
+nav_order: 4
+parent: "Build & Integrate"
+---
 # Operator guide
 
 This guide is for teams operating a DeDi-compatible namespace or registry.

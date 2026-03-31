@@ -1,3 +1,8 @@
+---
+title: "Privacy & Abuse Controls"
+nav_order: 2
+parent: "Operations & Security"
+---
 # Privacy and abuse controls
 
 DeDi is oriented toward public information, but public does not mean frictionless bulk abuse should be ignored.

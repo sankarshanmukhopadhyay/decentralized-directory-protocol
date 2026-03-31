@@ -1,4 +1,100 @@
+# Site identity
 title: DeDi Documentation
-description: Documentation for the Decentralized Directory Protocol
+description: >-
+  Open protocol for publishing, discovering, and consuming public,
+  machine-readable directory data needed to verify participants,
+  memberships, public keys, and revocation status across ecosystems.
+url: "https://sankarshanmukhopadhyay.github.io"
+baseurl: "/decentralized-directory-protocol"
+
+# Theme
+remote_theme: just-the-docs/just-the-docs@v0.10.0
+
+# Colour scheme — "default" (light) or "dark"
+color_scheme: default
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# Navigation
+nav_sort: order   # order | case_sensitive | case_insensitive
+nav_external_links:
+  - title: GitHub
+    url: https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol
+
+# Aux links (top-right)
+aux_links:
+  "GitHub ↗":
+    - "https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol"
+aux_links_new_tab: true
+
+# Footer
+footer_content: >-
+  DeDi is open source under the
+  <a href="https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol/blob/main/LICENSE">Apache 2.0 License</a>.
+last_edit_timestamp: true
+last_edit_time_format: "%b %e %Y"
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol"
+gh_edit_branch: "main"
+gh_edit_source: docs
+gh_edit_view_mode: "tree"
+
+# Callouts
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
+# Mermaid diagrams
+mermaid:
+  version: "10.9.0"
+
+# Back to top
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Heading anchors
+heading_anchors: true
+
+# Markdown processor
 markdown: kramdown
-theme: minima
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Plugins (GitHub Pages whitelist)
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+
+# Exclude from build
+exclude:
+  - "*.gemspec"
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

@@ -1,0 +1,30 @@
+// DeDi custom theme overrides for just-the-docs
+// Accent: indigo-slate — professional, trustworthy, distinct from default blue
+
+:root {
+  // Primary brand colour (links, buttons, active nav)
+  --link-color: #4f46e5;
+  --btn-primary-color: #4f46e5;
+
+  // Sidebar active highlight
+  --nav-active-parent-link-color: #4f46e5;
+
+  // Inline code — subtle warm tint
+  --code-background-color: #f5f4ff;
+  --code-linenumber-color: #9993e0;
+}
+
+// Tighten up the hero section on the home page
+.main-content h1:first-child {
+  margin-top: 1rem;
+}
+
+// Make schema/API code blocks slightly more readable
+.highlight pre {
+  border-left: 3px solid #4f46e5;
+}
+
+// Callout "highlight" variant — use brand colour
+.highlight-callout {
+  border-left-color: #4f46e5;
+}

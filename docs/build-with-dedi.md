@@ -1,3 +1,8 @@
+---
+title: "Build & Integrate"
+nav_order: 6
+has_children: true
+---
 # Build with DeDi
 
 This document is for developers who want to move from reading the repo to actually building something.

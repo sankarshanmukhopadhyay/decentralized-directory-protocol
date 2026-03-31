@@ -1,3 +1,8 @@
+---
+title: "Adoption & Conformance"
+nav_order: 8
+has_children: true
+---
 # Adoption guide
 
 This guide is written for teams deciding whether and how to adopt DeDi.

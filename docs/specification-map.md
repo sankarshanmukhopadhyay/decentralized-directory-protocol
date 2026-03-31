@@ -1,3 +1,8 @@
+---
+title: "Specification Map"
+nav_order: 1
+parent: "Protocol Specification"
+---
 # Specification map
 
 This page points to the main specification surfaces in the repository.

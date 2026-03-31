@@ -1,3 +1,8 @@
+---
+title: "Operations & Security"
+nav_order: 9
+has_children: true
+---
 # Security model
 
 This document provides the initial security baseline for DeDi-compatible implementations.
