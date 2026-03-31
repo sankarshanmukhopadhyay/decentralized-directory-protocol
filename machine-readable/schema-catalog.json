@@ -1,0 +1,46 @@
+{
+  "project": "DeDi",
+  "catalog_version": "0.1.0",
+  "schemas": [
+    {
+      "name": "public_key",
+      "path": "schemas/public_key.json",
+      "examples": [
+        "examples/public-key/sample.json",
+        "examples/public-key/invalid.json"
+      ]
+    },
+    {
+      "name": "membership",
+      "path": "schemas/membership.json",
+      "examples": [
+        "examples/membership/sample.json",
+        "examples/membership/invalid.json"
+      ]
+    },
+    {
+      "name": "revoke",
+      "path": "schemas/revoke.json",
+      "examples": [
+        "examples/revoke/sample.json",
+        "examples/revoke/invalid.json"
+      ]
+    },
+    {
+      "name": "beckn_subscriber",
+      "path": "schemas/Beckn_subscriber.json",
+      "examples": [
+        "examples/beckn-subscriber/sample.json",
+        "examples/beckn-subscriber/invalid.json"
+      ]
+    },
+    {
+      "name": "beckn_subscriber_reference",
+      "path": "schemas/Beckn_subscriber_reference.json",
+      "examples": [
+        "examples/beckn-subscriber-reference/sample.json",
+        "examples/beckn-subscriber-reference/invalid.json"
+      ]
+    }
+  ]
+}

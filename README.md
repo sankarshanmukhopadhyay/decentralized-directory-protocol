@@ -1,26 +1,34 @@
 # DeDi: Decentralized Directory Protocol
 
-DeDi is an open protocol for publishing and consuming **public, machine-readable directories** that are needed to verify digital transactions, credentials, participants, memberships, keys, and revocation status.
+![Spec status](https://img.shields.io/badge/status-draft-blue)
+![Docs](https://img.shields.io/badge/docs-expanded-brightgreen)
+![Schemas](https://img.shields.io/badge/schemas-json--schema-informational)
+![License](https://img.shields.io/badge/license-Apache--2.0-lightgrey)
 
-In practical terms, DeDi gives developers and operators a common way to answer questions such as:
+DeDi is an open protocol for publishing, discovering, and consuming **public, machine-readable directory data** needed to verify participants, memberships, public keys, endpoints, and revocation status across ecosystems.
 
-- Which public key should I trust for this entity right now?
-- Is this participant currently registered, authorized, suspended, or revoked?
-- Where can I discover the source-of-truth registry for this namespace?
-- How can I integrate multiple public registries without custom logic for each one?
+It addresses a recurring integration problem: most trust systems can verify signatures, but they still struggle to discover the **right authoritative registry**, retrieve the **current public state**, and apply that state consistently across different registries. DeDi provides a common protocol and schema surface for that operational trust layer.
 
-This repository is the starting point for understanding the protocol, the schemas, the API surface, the trust model, and how to build with them.
+## Start here
 
-## Why developers should care
+### What problem does this solve?
+DeDi helps teams answer operational trust questions such as:
 
-Most verification stacks already know how to check **integrity**. The harder problem is operational trust:
+- Which public key should be trusted for this entity right now?
+- Is this participant still authorized, active, suspended, or revoked?
+- Which namespace or registry is authoritative for this record class?
+- How can multiple registries be integrated without bespoke logic for each one?
 
-- discovering the right source of truth,
-- retrieving the current state of a record,
-- checking whether something has been revoked or superseded,
-- and doing this consistently across multiple registries.
+### Who is this for?
+- **Developers** building verification, onboarding, resolver, or trust network flows
+- **Registry operators** exposing authoritative public state through interoperable interfaces
+- **Architects and ecosystem designers** creating reusable discovery and trust layers
+- **Evaluators and contributors** assessing protocol maturity, conformance, and adoption readiness
 
-That is the gap DeDi is intended to close.
+### Choose your path
+- **Build with DeDi:** start with the [10-minute quickstart](docs/getting-started/quickstart.md) and [developer build guide](docs/build-with-dedi.md)
+- **Understand the architecture:** read [why DeDi exists](docs/why-ddip.md), [core concepts](docs/core-concepts.md), and [architecture](docs/architecture.md)
+- **Evaluate for adoption:** review the [adoption guide](docs/adoption-guide.md), [conformance profile](conformance/profiles.md), and [versioning and stability guidance](docs/stability.md)
 
 ## What DeDi is
 
@@ -28,202 +36,116 @@ DeDi is:
 
 - a protocol and schema layer for public directories,
 - an interoperability approach for lookup, query, and trust discovery,
-- a way to make registries easier to integrate into verification flows,
-- a foundation that can support multiple ecosystems and data models.
+- a reusable interface for authoritative public state,
+- and a foundation for multiple ecosystems and record classes.
 
 DeDi is **not**:
 
-- a single software product,
-- a requirement to replace an existing registry,
-- a blockchain mandate,
-- or a closed hosted service.
+- a single hosted product,
+- a mandate to replace an existing registry,
+- a blockchain requirement,
+- or a substitute for governance and assurance.
 
-A hosted implementation such as `dedi.global` can accelerate adoption, but the protocol should be understood independently from any one deployment.
+## 10-minute implementation path
 
-## Who this repo is for
+1. Read the [quickstart](docs/getting-started/quickstart.md).
+2. Pick a schema from [`schemas/`](schemas/).
+3. Validate sample data from [`examples/`](examples/).
+4. Review the API contract in [`api/openapi.yaml`](api/openapi.yaml).
+5. Use the [quickstart examples](examples/quickstart/) to publish, query, and verify.
+6. Check the [conformance baseline](conformance/profiles.md) before claiming compatibility.
 
-### Registry operators
-You maintain a public registry or authoritative directory and want to expose it through a more consistent, machine-readable interface.
+## Core project surfaces
 
-### Verifier and relying-party developers
-You need to look up public keys, membership status, revocation information, or participant metadata inside verification and onboarding workflows.
+### Specifications and protocol surface
+- [Normative protocol specification](docs/protocol-spec.md)
+- [Spec index](spec/README.md)
+- [API contract](api/openapi.yaml)
+- [Postman collection](api/dedi_postman_collection.json)
 
-### Ecosystem architects
-You are designing a trust network, registry layer, or discovery mechanism and want a reusable pattern rather than bespoke integrations.
+### Concepts and architecture
+- [Why DeDi exists](docs/why-ddip.md)
+- [Core concepts](docs/core-concepts.md)
+- [Architecture](docs/architecture.md)
+- [Security model](docs/security-model.md)
+- [Compare and position](docs/compare-and-position.md)
 
-### Contributors
-You want to improve the schemas, examples, guidance, and implementation pathway for the protocol.
+### Build and adoption
+- [Build with DeDi](docs/build-with-dedi.md)
+- [Verifier guide](docs/verifier-guide.md)
+- [Operator guide](docs/operator-guide.md)
+- [Publishing workflow](docs/publishing-workflow.md)
+- [Adoption guide](docs/adoption-guide.md)
+- [Use cases](docs/use-cases.md)
 
-## Start here
-
-Read in this order if you want the fastest route from orientation to implementation:
-
-1. [Protocol specification](docs/protocol-spec.md)
-2. [Architecture](docs/architecture.md)
-3. [Security model](docs/security-model.md)
-4. [Build with DeDi](docs/build-with-dedi.md)
-5. [Verifier integration guide](docs/verifier-guide.md)
-6. [Operator guide](docs/operator-guide.md)
-7. [`examples/`](examples/)
-8. [`schemas/`](schemas/)
-9. [`api/openapi.yaml`](api/openapi.yaml)
-10. [`api/dedi_postman_collection.json`](api/dedi_postman_collection.json)
-
-## Quick start
-
-### For consumers of a DeDi-compatible directory
-
-1. Identify the namespace and trust anchor you are willing to trust.
-2. Determine which registry and schema you need.
-3. Perform a lookup or query against the directory endpoint.
-4. Validate the returned payload against the corresponding JSON schema.
-5. Verify freshness, provenance, and revocation semantics before acting on the data.
-6. Apply your own policy decision logic.
-
-### For publishers and registry operators
-
-1. Define namespace ownership and trust-anchor material.
-2. Choose the directory types you want to expose.
-3. Map existing records to one or more DeDi schemas.
-4. Publish DeDi-compatible endpoints with stable response semantics.
-5. Publish signing, rotation, and revocation guidance.
-6. Add examples and integration notes so consumers know how to use the registry safely.
-
-A more detailed implementation path is available in [docs/adoption-guide.md](docs/adoption-guide.md).
-
-## Core information model
-
-DeDi is organized around three simple constructs.
-
-### Namespace
-A namespace is the trust and discovery starting point. In practice this often maps to an organization and, frequently, to a domain name.
-
-### Directory
-A directory is a collection of records exposed under a schema. A directory may represent public keys, memberships, revocations, subscribers, or another well-defined record class.
-
-### Record
-A record is the individual item that a verifier, integrator, or relying party retrieves and acts upon.
-
-## What you can build with it
-
-DeDi is useful when you need **current public state** as part of a trust decision. Common patterns include:
-
-- **Public key discovery** for signature verification.
-- **Revocation or deny-list lookup** before accepting a credential, entity, or transaction.
-- **Membership and affiliation checks** for gated access or ecosystem participation.
-- **Participant registries** for network discovery, such as Beckn participants and endpoints.
-- **Reference registries** that point to other DeDi-compatible records or registries.
-
-See [docs/use-cases.md](docs/use-cases.md) for concrete examples.
+### Testability and quality
+- [Conformance overview](conformance/README.md)
+- [Conformance profiles](conformance/profiles.md)
+- [Validation script](scripts/validate_artifacts.py)
+- [Machine-readable catalogs](machine-readable/)
 
 ## Repository structure
 
 ```text
 .
-├── README.md
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── docs/
-│   ├── adoption-guide.md
-│   ├── architecture.md
-│   ├── build-with-dedi.md
-│   ├── conformance.md
-│   ├── glossary.md
-│   ├── operator-guide.md
-│   ├── privacy-abuse-controls.md
-│   ├── protocol-spec.md
-│   ├── publishing-workflow.md
-│   ├── roadmap.md
-│   ├── security-model.md
-│   ├── use-cases.md
-│   ├── verifier-guide.md
-│   ├── versioning-policy.md
-│   └── observability-and-incident-response.md
+├── .github/
+│   ├── CODEOWNERS
+│   └── workflows/
 ├── api/
-│   ├── README.md
-│   ├── openapi.yaml
-│   └── dedi_postman_collection.json
+├── conformance/
+├── docs/
+│   └── getting-started/
 ├── examples/
-│   ├── README.md
-│   ├── */sample.json
-│   └── */invalid.json
-└── schemas/
-    ├── README.md
-    ├── Beckn_subscriber.json
-    ├── Beckn_subscriber_reference.json
-    ├── membership.json
-    ├── public_key.json
-    └── revoke.json
+│   └── quickstart/
+├── machine-readable/
+├── schemas/
+├── spec/
+├── scripts/
+├── CONTRIBUTING.md
+├── GOVERNANCE.md
+├── README.md
+└── SECURITY.md
 ```
 
 ## Available schemas
 
 | Schema | Purpose | Typical use |
 |---|---|---|
-| `public_key.json` | Current public key material and prior keys | Verify signatures, discover trusted keys |
-| `revoke.json` | Negative list or revocation entry | Reject revoked entities, credentials, or members |
-| `membership.json` | Public membership / affiliation status | Check participation, enrollment, or standing |
-| `Beckn_subscriber.json` | Beckn network participant registry entry | Discover subscriber endpoints and keys |
-| `Beckn_subscriber_reference.json` | Reference to another subscriber registry or record | Federation, delegation, or indirection |
+| `public_key.json` | Current and historical public key material | Signature verification, key discovery |
+| `revoke.json` | Revocation or deny-list entry | Reject revoked entities, keys, or credentials |
+| `membership.json` | Public membership or affiliation state | Standing, enrollment, or participation checks |
+| `Beckn_subscriber.json` | Beckn participant directory entry | Endpoint and key discovery |
+| `Beckn_subscriber_reference.json` | Reference to another directory or record | Federation, delegation, or indirection |
 
-See [schemas/README.md](schemas/README.md) for field-level notes and implementation considerations.
+## Stability and maturity signals
 
-## What changed in this developer-focused pass
+- **Protocol maturity:** draft, implementation-oriented
+- **Schemas:** usable for experimentation and integration pilots
+- **Conformance surface:** baseline compatibility profile included
+- **Assurance:** external assurance and trust policy remain deployment concerns, not protocol guarantees
+
+More detail is available in [docs/stability.md](docs/stability.md) and [docs/versioning-policy.md](docs/versioning-policy.md).
+
+## Governance and contribution
 
 This repository now includes:
 
-- a **normative protocol specification** separated from the README,
-- a **security model** and vulnerability reporting policy,
-- an initial **OpenAPI contract**,
-- clearer **operator** and **verifier** integration guidance,
-- a **publishing workflow**, **glossary**, **versioning policy**, and **conformance guidance**,
-- tighter schemas for keys, revocation, and membership lifecycle data,
-- valid and invalid examples for every schema,
-- and CI checks for schema and OpenAPI validation.
+- a clearer [governance model](GOVERNANCE.md),
+- an expanded [contribution guide](CONTRIBUTING.md),
+- CI validation for schemas and OpenAPI,
+- and a GitHub Pages-ready docs index in [`docs/index.md`](docs/index.md).
 
 ## Design principles
 
 DeDi works best when directories are:
 
-- **Publicly accessible** where policy permits.
-- **Machine-readable** with stable schemas.
-- **Authoritative** with a clear source of truth.
-- **Current** so verifiers are not acting on stale state.
-- **Traceable** so provenance and change history can be understood.
-- **Composable** so multiple schemas and ecosystems can coexist.
-- **Verifiable** so signatures, history, and revocation semantics can be checked consistently.
+- **Authoritative** about who controls the namespace and record lifecycle
+- **Machine-readable** with stable schemas and predictable API semantics
+- **Current** enough for live operational decisions
+- **Traceable** so provenance, changes, and revocations can be understood
+- **Composable** across ecosystems and record classes
+- **Verifiable** through signatures, policy, and runtime checks
 
-## Working with the schemas
+## Project objective
 
-The schemas in this repository can be used to:
-
-- validate payloads during development,
-- document record formats,
-- support testing and conformance,
-- reduce ambiguity for integrators.
-
-Recommended implementation practice:
-
-- validate every record at publish time,
-- validate every response at integration time,
-- version breaking schema changes explicitly,
-- and publish example payloads alongside APIs.
-
-## Build something with it
-
-If you are trying to move from understanding to implementation, go straight to:
-
-- [docs/build-with-dedi.md](docs/build-with-dedi.md) for application patterns,
-- [docs/verifier-guide.md](docs/verifier-guide.md) for safe consumption,
-- [docs/operator-guide.md](docs/operator-guide.md) for deployment and operations,
-- [examples/README.md](examples/README.md) for sample payloads,
-- [api/README.md](api/README.md) for API contract guidance.
-
-## Get involved
-
-- Open an issue with a concrete protocol, schema, or documentation improvement.
-- Contribute examples from real registries.
-- Propose additional record classes and interoperability mappings.
-- Help tighten validation, discovery, and adoption guidance.
-
-Contribution guidance is in [CONTRIBUTING.md](CONTRIBUTING.md). Security reporting is in [SECURITY.md](SECURITY.md).
+The goal is not to create yet another registry silo. The goal is to make **directory infrastructure interoperable, testable, and easier to trust operationally**.

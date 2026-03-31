@@ -1,6 +1,6 @@
 # DeDi architecture and protocol model
 
-This document explains the project in implementation terms rather than presentation terms.
+This document explains DeDi in implementation terms rather than presentation terms.
 
 ## The problem DeDi addresses
 
@@ -14,6 +14,17 @@ Many verification workflows depend on public information that exists outside the
 These checks are often performed through fragmented, registry-specific interfaces. That creates integration cost, inconsistent trust logic, and operational drag.
 
 DeDi introduces a common way to expose and consume this public state.
+
+## System view
+
+```mermaid
+flowchart LR
+    A[Namespace authority] --> B[DeDi-compatible directory]
+    B --> C[Schema-governed records]
+    C --> D[Query or lookup API]
+    D --> E[Resolver or verifier]
+    E --> F[Local policy decision]
+```
 
 ## Core model
 
@@ -51,14 +62,17 @@ A relying party still needs to decide:
 
 ## Protocol role in a verification flow
 
-A simplified flow looks like this:
-
-1. A transaction, credential, or participant identifier is presented.
-2. The verifier determines which namespace or directory is relevant.
-3. The verifier queries a DeDi-compatible directory.
-4. The verifier validates the response against the schema.
-5. The verifier combines the result with local policy.
-6. The system accepts, rejects, or routes for further review.
+```mermaid
+sequenceDiagram
+    participant Subject as Transaction or subject
+    participant Verifier as Verifier
+    participant Directory as DeDi directory
+    Subject->>Verifier: Present identifier or signed artifact
+    Verifier->>Directory: Query or lookup relevant record
+    Directory-->>Verifier: Return schema-governed record
+    Verifier->>Verifier: Validate schema, provenance, freshness, revocation
+    Verifier->>Verifier: Apply local policy
+```
 
 ## Architectural properties that matter
 
@@ -88,10 +102,10 @@ That means adoption does not require a greenfield system. A team can wrap an exi
 
 There are two common roles:
 
-### Publisher / registry operator
+### Publisher or registry operator
 Publishes authoritative records through a stable, machine-readable interface.
 
-### Consumer / verifier / integrator
+### Consumer or verifier or integrator
 Retrieves records and uses them in decision flows.
 
 Projects often play both roles.

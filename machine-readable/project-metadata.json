@@ -1,0 +1,13 @@
+{
+  "name": "Decentralized Directory Protocol",
+  "short_name": "DeDi",
+  "status": "draft",
+  "focus": [
+    "directory interoperability",
+    "public-state discovery",
+    "machine-readable trust infrastructure"
+  ],
+  "documentation_index": "docs/index.md",
+  "spec_index": "spec/README.md",
+  "conformance_index": "conformance/README.md"
+}

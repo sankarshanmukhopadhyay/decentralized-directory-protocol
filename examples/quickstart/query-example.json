@@ -1,0 +1,15 @@
+{
+  "namespace": "example.org",
+  "page": 1,
+  "page_size": 20,
+  "returned_records": [
+    {
+      "schema": "public_key",
+      "record_id": "did:example:merchant-123"
+    },
+    {
+      "schema": "membership",
+      "record_id": "member-001"
+    }
+  ]
+}

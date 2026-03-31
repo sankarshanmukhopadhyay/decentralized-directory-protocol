@@ -1,22 +1,19 @@
-# Conformance guidance
+# Conformance overview
 
-This repository includes a starter conformance surface rather than a full interop suite.
+The repository includes a starter conformance surface so that compatibility claims can be grounded in observable behavior rather than prose alone.
 
-## Minimum profile
+For the full repository-facing material, see:
 
-A minimum DeDi-compatible implementation SHOULD:
+- [`../conformance/README.md`](../conformance/README.md)
+- [`../conformance/profiles.md`](../conformance/profiles.md)
+- [`../conformance/test-matrix.md`](../conformance/test-matrix.md)
 
-- expose documented query and lookup behavior,
-- validate published records against declared schemas,
-- document namespace authority,
-- document signing and verification expectations,
-- and publish examples that pass validation.
+## What to evaluate
 
-## Extended profile
+A baseline-compatible implementation should make it possible to inspect:
 
-An extended implementation SHOULD also:
-
-- expose historical lookup behavior,
-- document freshness and caching semantics,
-- support append-auditable key and revocation history,
-- and publish machine-readable API contracts.
+- namespace authority,
+- query and lookup behavior,
+- schema validation expectations,
+- revocation and freshness semantics,
+- and the machine-readable contract surface.

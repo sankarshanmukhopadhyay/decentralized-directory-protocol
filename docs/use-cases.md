@@ -1,6 +1,6 @@
 # Use cases
 
-This document grounds the repository in concrete developer and ecosystem use cases.
+This document grounds the repository in concrete developer and ecosystem scenarios.
 
 ## 1. Public key lookup for verifiable transactions
 
@@ -62,3 +62,23 @@ DeDi role:
 - and make delegation explicit.
 
 Relevant schema: `Beckn_subscriber_reference.json`
+
+## 6. Cross-ecosystem trust registry normalization
+
+A verifier integrates with multiple registries that publish broadly similar public state but with different field names and query patterns.
+
+DeDi role:
+
+- reduce integration fragmentation,
+- provide reusable lookup and validation patterns,
+- and make migration between registries easier.
+
+## 7. Public-sector or consortium directories
+
+A public-sector service or industry consortium needs a predictable way to publish recognized participants, service endpoints, keys, or status changes.
+
+DeDi role:
+
+- make authoritative publication easier to consume,
+- support better operator and verifier documentation,
+- and reduce one-off onboarding logic for each participant ecosystem.
