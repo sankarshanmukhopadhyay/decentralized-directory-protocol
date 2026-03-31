@@ -53,9 +53,8 @@ python scripts/validate_artifacts.py
 
 ## Issues and proposals
 
-For substantive protocol changes, open an issue or pull request that explains:
+For substantive protocol changes — schema additions, API changes, or normative specification edits — use the [Protocol Change Proposal (PCP) process](docs/protocol-change-process.md). A PCP is a structured GitHub issue that makes compatibility trade-offs visible before implementation work begins.
 
-- the current ambiguity or pain point,
-- the proposed behavior,
-- the compatibility impact,
-- and the docs or examples that need to move together.
+For smaller clarifications, documentation fixes, or non-normative examples, a plain pull request with a clear description is sufficient.
+
+The PCP template and lifecycle are documented in [`docs/protocol-change-process.md`](docs/protocol-change-process.md).

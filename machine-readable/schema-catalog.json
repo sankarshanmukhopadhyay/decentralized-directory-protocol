@@ -41,6 +41,14 @@
         "examples/beckn-subscriber-reference/sample.json",
         "examples/beckn-subscriber-reference/invalid.json"
       ]
+    },
+    {
+      "name": "endpoint",
+      "path": "schemas/endpoint.json",
+      "examples": [
+        "examples/endpoint/sample.json",
+        "examples/endpoint/invalid.json"
+      ]
     }
   ]
 }

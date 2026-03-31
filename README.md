@@ -1,7 +1,7 @@
 # DeDi: Decentralized Directory Protocol
 
 ![Spec status](https://img.shields.io/badge/status-draft-blue)
-![Docs](https://img.shields.io/badge/docs-expanded-brightgreen)
+![CI](https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol/actions/workflows/validate.yml/badge.svg)
 ![Schemas](https://img.shields.io/badge/schemas-json--schema-informational)
 ![License](https://img.shields.io/badge/license-Apache--2.0-lightgrey)
 
@@ -29,6 +29,7 @@ DeDi helps teams answer operational trust questions such as:
 - **Build with DeDi:** start with the [10-minute quickstart](docs/getting-started/quickstart.md) and [developer build guide](docs/build-with-dedi.md)
 - **Understand the architecture:** read [why DeDi exists](docs/why-ddip.md), [core concepts](docs/core-concepts.md), and [architecture](docs/architecture.md)
 - **Evaluate for adoption:** review the [adoption guide](docs/adoption-guide.md), [conformance profile](conformance/profiles.md), and [versioning and stability guidance](docs/stability.md)
+- **Propose a change:** follow the [protocol change process](docs/protocol-change-process.md)
 
 ## What DeDi is
 
@@ -51,9 +52,18 @@ DeDi is **not**:
 1. Read the [quickstart](docs/getting-started/quickstart.md).
 2. Pick a schema from [`schemas/`](schemas/).
 3. Validate sample data from [`examples/`](examples/).
-4. Review the API contract in [`api/openapi.yaml`](api/openapi.yaml).
-5. Use the [quickstart examples](examples/quickstart/) to publish, query, and verify.
+4. Walk through a [complete end-to-end flow](examples/end-to-end/README.md).
+5. Review the API contract in [`api/openapi.yaml`](api/openapi.yaml).
 6. Check the [conformance baseline](conformance/profiles.md) before claiming compatibility.
+
+Or run the reference client directly:
+
+```bash
+python -m pip install jsonschema
+python scripts/client_demo.py discover example.org
+python scripts/client_demo.py lookup example.org public-key did:example:merchant-123
+python scripts/client_demo.py validate public_key examples/public-key/sample.json
+```
 
 ## Core project surfaces
 
@@ -62,6 +72,7 @@ DeDi is **not**:
 - [Spec index](spec/README.md)
 - [API contract](api/openapi.yaml)
 - [Postman collection](api/dedi_postman_collection.json)
+- [Discovery conventions](docs/discovery.md)
 
 ### Concepts and architecture
 - [Why DeDi exists](docs/why-ddip.md)
@@ -69,6 +80,7 @@ DeDi is **not**:
 - [Architecture](docs/architecture.md)
 - [Security model](docs/security-model.md)
 - [Compare and position](docs/compare-and-position.md)
+- [Federation guide](docs/federation.md)
 
 ### Build and adoption
 - [Build with DeDi](docs/build-with-dedi.md)
@@ -81,8 +93,17 @@ DeDi is **not**:
 ### Testability and quality
 - [Conformance overview](conformance/README.md)
 - [Conformance profiles](conformance/profiles.md)
+- [Validation guide](conformance/validation-guide.md)
+- [Test matrix](conformance/test-matrix.md)
 - [Validation script](scripts/validate_artifacts.py)
+- [Reference client](scripts/client_demo.py)
 - [Machine-readable catalogs](machine-readable/)
+
+### Contributing and governance
+- [Contributing guide](CONTRIBUTING.md)
+- [Protocol change process](docs/protocol-change-process.md)
+- [Versioning policy](docs/versioning-policy.md)
+- [Governance model](GOVERNANCE.md)
 
 ## Repository structure
 
@@ -91,16 +112,43 @@ DeDi is **not**:
 ├── .github/
 │   ├── CODEOWNERS
 │   └── workflows/
+│       └── validate.yml        # CI: schema + OpenAPI validation
 ├── api/
+│   ├── openapi.yaml
+│   └── dedi_postman_collection.json
 ├── conformance/
+│   ├── profiles.md             # Baseline and recommended conformance profiles
+│   ├── validation-guide.md     # How to run and interpret validation
+│   └── test-matrix.md          # Per-capability self-assessment checklist
 ├── docs/
-│   └── getting-started/
+│   ├── getting-started/
+│   │   └── quickstart.md
+│   ├── discovery.md            # Namespace, registry, and schema discovery conventions
+│   ├── federation.md           # Cross-registry and federated discovery
+│   ├── protocol-change-process.md  # How to propose protocol changes (PCP)
+│   ├── versioning-policy.md    # Semantic versioning, deprecation, migration
+│   └── ...
 ├── examples/
+│   ├── end-to-end/             # Complete flows: key lookup, revocation, membership
+│   ├── endpoint/
+│   ├── public-key/
+│   ├── membership/
+│   ├── revoke/
+│   ├── beckn-subscriber/
+│   ├── beckn-subscriber-reference/
 │   └── quickstart/
 ├── machine-readable/
 ├── schemas/
-├── spec/
+│   ├── public_key.json
+│   ├── revoke.json
+│   ├── membership.json
+│   ├── endpoint.json           # Service endpoint advertisement (new)
+│   ├── Beckn_subscriber.json
+│   └── Beckn_subscriber_reference.json
 ├── scripts/
+│   ├── validate_artifacts.py   # Schema + OpenAPI validation
+│   └── client_demo.py          # Reference client (discover, query, lookup, validate)
+├── spec/
 ├── CONTRIBUTING.md
 ├── GOVERNANCE.md
 ├── README.md
@@ -114,6 +162,7 @@ DeDi is **not**:
 | `public_key.json` | Current and historical public key material | Signature verification, key discovery |
 | `revoke.json` | Revocation or deny-list entry | Reject revoked entities, keys, or credentials |
 | `membership.json` | Public membership or affiliation state | Standing, enrollment, or participation checks |
+| `endpoint.json` | Service endpoint advertisement | Callback and API endpoint discovery |
 | `Beckn_subscriber.json` | Beckn participant directory entry | Endpoint and key discovery |
 | `Beckn_subscriber_reference.json` | Reference to another directory or record | Federation, delegation, or indirection |
 
@@ -121,18 +170,19 @@ DeDi is **not**:
 
 - **Protocol maturity:** draft, implementation-oriented
 - **Schemas:** usable for experimentation and integration pilots
-- **Conformance surface:** baseline compatibility profile included
+- **Conformance surface:** baseline compatibility profile included, CI validation running
 - **Assurance:** external assurance and trust policy remain deployment concerns, not protocol guarantees
 
-More detail is available in [docs/stability.md](docs/stability.md) and [docs/versioning-policy.md](docs/versioning-policy.md).
+More detail is in [docs/stability.md](docs/stability.md) and [docs/versioning-policy.md](docs/versioning-policy.md).
 
 ## Governance and contribution
 
-This repository now includes:
+This repository includes:
 
-- a clearer [governance model](GOVERNANCE.md),
+- a [governance model](GOVERNANCE.md),
 - an expanded [contribution guide](CONTRIBUTING.md),
-- CI validation for schemas and OpenAPI,
+- a [protocol change process](docs/protocol-change-process.md) for proposing normative changes,
+- CI validation for schemas and OpenAPI on every push and PR,
 - and a GitHub Pages-ready docs index in [`docs/index.md`](docs/index.md).
 
 ## Design principles

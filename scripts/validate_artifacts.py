@@ -12,6 +12,7 @@ schema_files = {
     'revoke': root / 'schemas/revoke.json',
     'beckn-subscriber': root / 'schemas/Beckn_subscriber.json',
     'beckn-subscriber-reference': root / 'schemas/Beckn_subscriber_reference.json',
+    'endpoint': root / 'schemas/endpoint.json',
 }
 
 example_map = {
@@ -20,6 +21,7 @@ example_map = {
     'revoke': root / 'examples/revoke',
     'beckn-subscriber': root / 'examples/beckn-subscriber',
     'beckn-subscriber-reference': root / 'examples/beckn-subscriber-reference',
+    'endpoint': root / 'examples/endpoint',
 }
 
 for key, schema_path in schema_files.items():
