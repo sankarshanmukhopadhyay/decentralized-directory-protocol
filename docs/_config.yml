@@ -7,11 +7,9 @@ description: >-
 url: "https://sankarshanmukhopadhyay.github.io"
 baseurl: "/decentralized-directory-protocol"
 
-# Theme
+# Theme — just-the-docs via remote_theme
 remote_theme: just-the-docs/just-the-docs@v0.10.0
-
-# Colour scheme
-color_scheme: default
+# NOTE: do NOT set color_scheme here; omitting it uses the built-in light default.
 
 # Search
 search_enabled: true
@@ -23,7 +21,7 @@ search:
   rel_url: true
   button: false
 
-# Navigation — nav_order front matter controls order automatically
+# Navigation
 nav_sort: case_insensitive
 
 # Aux links (top-right header)

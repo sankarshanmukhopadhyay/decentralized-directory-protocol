@@ -1,16 +1,13 @@
 // DeDi custom overrides for just-the-docs v0.10.0
-// Accent: indigo (#4f46e5) — professional, distinct from the default blue
+// Uses only SCSS variable overrides — no functions, no imports.
+// These variables are picked up by just-the-docs before it compiles its own CSS.
 
-// just-the-docs exposes these SCSS variables (not CSS custom properties)
 $link-color: #4f46e5;
 $btn-primary-color: #4f46e5;
-$nav-child-link-color: darken(#4f46e5, 8%);
 $border-color: #e2e1f9;
-
-// Subtle brand tint on inline code
 $code-background-color: #f5f4ff;
 
-// Code block left-border accent
+// Left-border accent on all code blocks
 .highlight {
   border-left: 3px solid #4f46e5;
   padding-left: 0.75rem;
