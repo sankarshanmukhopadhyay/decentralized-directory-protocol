@@ -1,0 +1,6 @@
+{
+  "public_key_id": "did:example:merchant-123",
+  "publicKey": "abc",
+  "keyType": "RSA1024",
+  "activatedAt": "2026-03-01T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "namespace": "example.org",
+  "record_type": "public-key",
+  "items": [
+    {
+      "public_key_id": "did:example:merchant-123",
+      "publicKey": "-----BEGIN PUBLIC KEY-----MIIB...-----END PUBLIC KEY-----",
+      "keyType": "Ed25519",
+      "keyFormat": "PEM",
+      "activatedAt": "2026-03-01T00:00:00Z",
+      "entity": {
+        "name": "Merchant One",
+        "url": "https://merchant.example.org",
+        "address": "Kolkata, India"
+      }
+    }
+  ]
+}

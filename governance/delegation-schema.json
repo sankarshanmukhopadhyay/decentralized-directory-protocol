@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeDi Delegation",
+  "type": "object",
+  "required": ["delegator", "delegatee", "scope", "issuedAt", "expiry"],
+  "properties": {
+    "delegator": {"type": "string", "minLength": 1},
+    "delegatee": {"type": "string", "minLength": 1},
+    "scope": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["publish", "update", "revoke"]},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "issuedAt": {"type": "string", "format": "date-time"},
+    "expiry": {"type": "string", "format": "date-time"},
+    "evidenceUri": {"type": "string"}
+  },
+  "additionalProperties": false
+}

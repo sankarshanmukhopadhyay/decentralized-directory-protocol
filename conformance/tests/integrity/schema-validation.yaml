@@ -1,0 +1,5 @@
+id: DDP-SEC-001
+kind: schema-validation
+schema: schemas/public_key.json
+valid_vector: conformance/vectors/valid/public-key.json
+invalid_vector: conformance/vectors/invalid/public-key.json

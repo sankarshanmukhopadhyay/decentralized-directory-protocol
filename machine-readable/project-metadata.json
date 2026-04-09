@@ -5,9 +5,12 @@
   "focus": [
     "directory interoperability",
     "public-state discovery",
-    "machine-readable trust infrastructure"
+    "machine-readable trust infrastructure",
+    "governance-aware directory control surfaces"
   ],
   "documentation_index": "docs/index.md",
   "spec_index": "spec/README.md",
-  "conformance_index": "conformance/README.md"
+  "conformance_index": "conformance/README.md",
+  "governance_index": "governance/authority-model.md",
+  "reference_implementation": "reference-impl/README.md"
 }

@@ -1,0 +1,11 @@
+profile: ddp-secure-v1
+version: 1
+summary: Recommended profile for deployments that want explicit lifecycle and evidence handling.
+extends: ddp-base-v1
+requirements:
+  - id: DDP-LIF-001
+    description: Revocation entries must validate and expose lifecycle state.
+    test: conformance/tests/revocation/revocation-entry.yaml
+  - id: DDP-EVD-001
+    description: Implementation should emit evidence for query and lookup runs.
+    test: evidence/quickstart-run.json

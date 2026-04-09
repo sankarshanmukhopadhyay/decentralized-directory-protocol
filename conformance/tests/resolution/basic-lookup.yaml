@@ -1,0 +1,6 @@
+id: DDP-RES-002
+method: GET
+path: /dedi/lookup/example.org/public-key/did:example:merchant-123
+expected:
+  required_keys: [public_key_id, publicKey, keyType, keyFormat, activatedAt]
+  schema: schemas/public_key.json

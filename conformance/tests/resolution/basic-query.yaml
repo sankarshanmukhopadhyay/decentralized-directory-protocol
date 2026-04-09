@@ -1,0 +1,5 @@
+id: DDP-RES-001
+method: GET
+path: /dedi/query/example.org?page=1&page_size=20
+expected:
+  required_keys: [namespace, record_type, items]

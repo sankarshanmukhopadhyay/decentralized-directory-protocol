@@ -1,0 +1,10 @@
+{
+  "test_id": "DDP-QS-001",
+  "query_path": "/dedi/query/example.org?page=1&page_size=20",
+  "lookup_path": "/dedi/lookup/example.org/public-key/did:example:merchant-123",
+  "query_items": 1,
+  "lookup_id": "did:example:merchant-123",
+  "output_hash": "e8b6f76354848ce3f666649a93cca45b455b0201bcf3060121d2887f09ef2de6",
+  "validation": "PASS",
+  "timestamp": "2026-04-09T05:42:56.058125+00:00"
+}

@@ -4,32 +4,33 @@ nav_order: 11
 ---
 # Roadmap
 
-This roadmap is intentionally practical. It focuses on the moves that most improve implementability and adoption.
+This roadmap is intentionally practical. It focuses on the moves that most improve implementability, conformance, and developer adoption.
 
-## Immediate priorities
+## Completed in this increment
 
-### 1. Tighten discovery conventions ✓
-Discovery is now documented in [`docs/discovery.md`](discovery.md) with concrete endpoint patterns, curl examples, and a client-side checklist. The reference client (`scripts/client_demo.py`) implements discovery programmatically.
+### 1. Add a deterministic quickstart ✓
+A time-to-first-success path now exists through [`docs/getting-started/quickstart.md`](getting-started/quickstart.md), [`scripts/query_and_verify.py`](../scripts/query_and_verify.py), and [`examples/minimal-node/`](../examples/minimal-node/).
 
-### 2. Add conformance and validation guidance ✓
-A lightweight conformance profile and validation guide now live in [`conformance/`](../conformance/). The validation script runs in CI on every push and PR via `.github/workflows/validate.yml`. The [`conformance/validation-guide.md`](../conformance/validation-guide.md) covers local runs, manual payload validation, and evidence expectations for conformance claims.
+### 2. Add a minimal runnable implementation ✓
+A reference server and client now exist under [`reference-impl/`](../reference-impl/) so implementers can see a concrete query and lookup surface.
 
-### 3. Expand examples into end-to-end flows ✓
-[`examples/end-to-end/README.md`](../examples/end-to-end/README.md) covers four complete flows with step-by-step curl commands and Python verification logic: key discovery, revocation checking, membership validation, and historical audit lookup.
+### 3. Make conformance machine-verifiable ✓
+Machine-readable conformance profiles, tests, and vectors now live under [`conformance/`](../conformance/).
 
-### 4. Clarify versioning policy ✓
-[`docs/versioning-policy.md`](versioning-policy.md) now defines patch/minor/major compatibility rules, schema evolution cases (adding optional fields, adding required fields, removing fields, changing types), deprecation behavior, and experimental feature handling.
+### 4. Make governance more explicit ✓
+Authority, delegation, and revocation are now documented and represented under [`governance/`](../governance/).
 
-### 5. Improve contribution process ✓
-[`docs/protocol-change-process.md`](protocol-change-process.md) defines the Protocol Change Proposal (PCP) process with a structured issue template, lifecycle labels, and acceptance criteria. [`CONTRIBUTING.md`](../CONTRIBUTING.md) is updated to reference it.
+### 5. Add evidence artifacts ✓
+Sample evidence outputs and quickstart-generated evidence now live under [`evidence/`](../evidence/).
 
-## Medium-term priorities
+## Next priorities
 
-- More schema families for common trust use cases. ✓ `endpoint.json` added for service endpoint advertisement.
-- Example client and server implementations. ✓ `scripts/client_demo.py` is a reference CLI client covering discover, query, lookup, revocation check, and local validation.
-- Better federation and cross-registry discovery guidance. ✓ [`docs/federation.md`](federation.md) covers reference records, namespace delegation, and cross-registry consumer patterns.
-- Ecosystem mappings beyond current included schemas. ✓ [`docs/compare-and-position.md`](compare-and-position.md) now covers DID resolution, OpenID Federation, TRAIN, Verifiable Data Registries, and Beckn registries.
+- Expand signed-response examples from illustrative placeholders to cryptographically verifiable fixtures.
+- Add more schema families for high-value trust infrastructure use cases.
+- Publish implementation notes for pagination, caching, and freshness semantics.
+- Add interoperability harnesses for ecosystem-specific profiles.
+- Add worked migration guides for wrapping legacy registries.
 
 ## Strategic goal
 
-The long-term goal should be simple: make DeDi feel less like an interesting concept and more like a protocol developers can confidently build into real systems.
+The long-term goal remains simple: make DeDi feel less like an interesting concept and more like a protocol developers can confidently build into real systems.

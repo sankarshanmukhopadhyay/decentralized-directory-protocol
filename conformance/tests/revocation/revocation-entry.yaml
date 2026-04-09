@@ -1,0 +1,5 @@
+id: DDP-LIF-001
+kind: schema-validation
+schema: schemas/revoke.json
+valid_vector: conformance/vectors/valid/revoke.json
+invalid_vector: conformance/vectors/invalid/revoke.json

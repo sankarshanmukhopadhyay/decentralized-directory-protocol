@@ -5,55 +5,83 @@ parent: "Getting Started"
 ---
 # Quickstart
 
-This quickstart is the fastest route from zero to a working mental model.
+This quickstart is optimized for **time to first success**. The objective is to go from clone to a working request, validated payload, and evidence artifact in roughly ten minutes.
 
 ## What you will do
 
-1. inspect a schema,
-2. validate a sample payload,
-3. issue a query request,
-4. fetch a record,
-5. apply basic verifier checks.
+1. install local validation dependencies,
+2. validate repository artifacts,
+3. start a minimal DeDi server,
+4. issue a query and a lookup,
+5. validate the response against the schema,
+6. and inspect the evidence output.
 
-## Step 1: pick a schema
-
-Start with [`schemas/public_key.json`](../../schemas/public_key.json) if your use case involves key discovery.
-
-## Step 2: inspect a valid sample
-
-See [`examples/public-key/sample.json`](../../examples/public-key/sample.json).
-
-## Step 3: validate the repository artifacts
+## Step 1: install dependencies
 
 ```bash
-python -m pip install jsonschema openapi-spec-validator PyYAML
+python -m pip install -r requirements-dev.txt
+```
+
+## Step 2: validate repository artifacts
+
+```bash
 python scripts/validate_artifacts.py
 ```
 
-## Step 4: query a namespace
+This validates:
+
+- schemas and sample payloads,
+- OpenAPI,
+- conformance profiles,
+- conformance vectors,
+- governance schema JSON,
+- and evidence artifacts.
+
+## Step 3: start the minimal reference server
+
+In one terminal:
 
 ```bash
-curl -s "https://api.dedi.global/dedi/query/example.org?page=1&page_size=20"
+python reference-impl/server/server.py
 ```
 
-## Step 5: look up a concrete record
+The server listens on `http://127.0.0.1:8080`.
+
+## Step 4: run the end-to-end quickstart helper
+
+In a second terminal:
 
 ```bash
-curl -s "https://api.dedi.global/dedi/lookup/example.org/public-key/did:example:merchant-123"
+python scripts/query_and_verify.py
 ```
 
-## Step 6: apply verifier logic
+## Step 5: inspect the expected output
 
-At minimum:
+A successful run will:
 
-- validate the payload against the declared schema,
-- check you trust the namespace authority,
-- verify freshness and revocation semantics,
-- and only then use the returned state in your decision flow.
+- query the `example.org` namespace,
+- look up `did:example:merchant-123` as a `public-key` record,
+- validate the payload against `schemas/public_key.json`,
+- and write `evidence/quickstart-run.json`.
+
+## Step 6: inspect the evidence artifact
+
+```bash
+cat evidence/quickstart-run.json
+```
+
+## Alternative: use Make targets
+
+```bash
+make setup
+make validate
+make quickstart
+```
 
 ## Next steps
 
 - [Build with DeDi](../build-with-dedi.md)
 - [Verifier guide](../verifier-guide.md)
 - [Operator guide](../operator-guide.md)
-- [Conformance profiles](../../conformance/profiles.md)
+- [Conformance overview](../conformance.md)
+- [Deployment models](../deployment-models.md)

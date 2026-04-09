@@ -1,24 +1,20 @@
 # Conformance
 
-Conformance matters because a protocol without testable expectations turns interoperability into interpretation.
+The purpose of this directory is to make implementation claims testable.
 
-This directory defines the conformance surface for DeDi-compatible implementations.
+## Contents
 
-## Included here
+- `profiles/` contains machine-readable conformance profiles
+- `tests/` contains named test definitions
+- `vectors/` contains valid and invalid payload fixtures
+- `validation-guide.md` explains how to run and interpret validation
+- `test-matrix.md` provides a human-readable cross-check
 
-- [Conformance profiles](profiles.md) — baseline and recommended compatibility expectations
-- [Validation guide](validation-guide.md) — how to run and interpret artifact validation locally and in CI
-- [Test matrix](test-matrix.md) — a per-capability checklist for assessing minimum support
+## Baseline expectation
 
-## Quick validation
+A DeDi implementation should be able to show:
 
-```bash
-python -m pip install jsonschema openapi-spec-validator PyYAML
-python scripts/validate_artifacts.py
-```
-
-A clean run prints `All validations passed.`
-
-## CI
-
-The repository ships a GitHub Actions workflow at `.github/workflows/validate.yml` that runs on every push and pull request. Implementations that wish to claim conformance should run equivalent checks in their own CI.
+- which profile it targets,
+- which tests it passes,
+- which vectors it uses,
+- and what evidence it can emit from real runs.

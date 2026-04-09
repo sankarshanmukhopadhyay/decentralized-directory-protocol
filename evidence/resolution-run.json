@@ -1,0 +1,6 @@
+{
+  "test_id": "DDP-RES-001",
+  "input": "/dedi/query/example.org?page=1&page_size=20",
+  "validation": "PASS",
+  "timestamp": "2026-04-09T00:00:00Z"
+}

@@ -1,14 +1,14 @@
 ---
 title: Home
 nav_order: 1
-description: "DeDi is an open protocol for publishing, discovering, and consuming public, machine-readable directory data needed to verify participants, memberships, public keys, and revocation status across ecosystems."
+description: "DeDi is an open protocol for publishing, discovering, and consuming public, machine-readable directory data with explicit governance, conformance, and evidence surfaces."
 permalink: /
 ---
 
 # DeDi: Decentralized Directory Protocol
 {: .fs-9 }
 
-An open protocol for public, machine-readable trust infrastructure — verifiable participants, keys, memberships, and revocation across any ecosystem.
+An open protocol for public, machine-readable directory infrastructure with governance-aware discovery, conformance, and evidence.
 {: .fs-6 .fw-300 }
 
 [Get started in 10 minutes](getting-started/quickstart){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
@@ -18,12 +18,22 @@ An open protocol for public, machine-readable trust infrastructure — verifiabl
 
 ## What problem does DeDi solve?
 
-Most trust systems can verify signatures. What they struggle with is the step _before_ verification: discovering the right authoritative registry, retrieving current public state, and applying it consistently across different registries.
+Most trust systems can verify signatures. What they still struggle with is the step before verification: discovering the right authoritative directory, retrieving current public state, understanding lifecycle semantics, and applying that state consistently across different registries.
 
 DeDi provides a common protocol and schema surface for that operational trust layer.
 
 {: .highlight }
-> **If your system needs to know** which public key to trust right now, whether an entity is still authorized, or which registry is authoritative for a namespace — DeDi is built for that.
+> **If your system needs to know** which public key to trust right now, whether an entity is still authorized, or which registry is authoritative for a namespace, DeDi is built for that.
+
+---
+
+## What is new in this repository increment?
+
+- A deterministic **time-to-first-success** path
+- A minimal runnable **reference server and client**
+- Machine-readable **conformance profiles, tests, and vectors**
+- Explicit **authority, delegation, and revocation** artifacts
+- Example **evidence outputs** for audit and assurance workflows
 
 ---
 
@@ -32,10 +42,11 @@ DeDi provides a common protocol and schema surface for that operational trust la
 | I want to… | Start here |
 |---|---|
 | Build a verifier or resolver | [Quickstart](getting-started/quickstart) → [Build & Integrate](build-with-dedi) |
-| Operate a registry | [Operator Guide](operator-guide) |
-| Evaluate DeDi for adoption | [Adoption & Conformance](adoption-guide) |
-| Understand the protocol | [Core Concepts](core-concepts) → [Architecture](architecture) |
-| Propose a change | [Protocol Change Process](protocol-change-process) |
+| Run a minimal DeDi service | [Minimal node example](../examples/minimal-node/README.md) |
+| Operate a directory | [Operator Guide](operator-guide) → [Deployment models](deployment-models) |
+| Evaluate DeDi for adoption | [Adoption guide](adoption-guide) → [Interoperability](interoperability) |
+| Review machine-verifiable quality | [Conformance](conformance) → [Validation guide](../conformance/validation-guide.md) |
+| Understand governance | [Governance model](../GOVERNANCE.md) → [Authority model](../governance/authority-model.md) |
 
 ---
 
@@ -52,8 +63,8 @@ DeDi provides a common protocol and schema surface for that operational trust la
 
 ---
 
-## What DeDi is (and isn't)
+## What DeDi is and is not
 
-DeDi **is** a protocol and schema layer for public directories, an interoperability approach for lookup and trust discovery, and a foundation for multiple ecosystems.
+DeDi **is** a protocol and schema layer for public directories, an interoperability approach for lookup and trust discovery, and a reusable surface for authoritative public state.
 
-DeDi **is not** a single hosted product, a blockchain requirement, or a substitute for governance and assurance.
+DeDi **is not** a trust policy in itself, a single hosted product, or a replacement for deployment governance.

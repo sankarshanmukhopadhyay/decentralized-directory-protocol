@@ -1,0 +1,13 @@
+profile: ddp-base-v1
+version: 1
+summary: Base conformance profile for interoperable query and lookup behavior.
+requirements:
+  - id: DDP-RES-001
+    description: Query endpoint must return a deterministic collection shape.
+    test: conformance/tests/resolution/basic-query.yaml
+  - id: DDP-RES-002
+    description: Lookup endpoint must return a record that matches the declared schema family.
+    test: conformance/tests/resolution/basic-lookup.yaml
+  - id: DDP-SEC-001
+    description: Public key record must validate against the repository schema.
+    test: conformance/tests/integrity/schema-validation.yaml

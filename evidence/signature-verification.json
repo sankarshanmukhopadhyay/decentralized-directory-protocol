@@ -1,0 +1,7 @@
+{
+  "test_id": "DDP-SEC-001",
+  "input": "did:example:merchant-123",
+  "validation": "PASS",
+  "note": "Illustrative evidence artifact; cryptographic verification fixture to be expanded.",
+  "timestamp": "2026-04-09T00:00:00Z"
+}
