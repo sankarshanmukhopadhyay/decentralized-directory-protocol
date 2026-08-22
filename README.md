@@ -8,6 +8,8 @@
 
 > 📖 **Documentation site:** [sankarshanmukhopadhyay.github.io/decentralized-directory-protocol](https://sankarshanmukhopadhyay.github.io/decentralized-directory-protocol/)
 
+> **Fork posture:** this repository is an implementation, evaluation, and assurance workbench around the upstream DeDi project. `LF-Decentralized-Trust-labs/decentralized-directory-protocol` remains authoritative for upstream governance, normative protocol decisions, and upstream releases. Fork-local profiles, tests, evidence, implementation guidance, and experiments do not imply upstream adoption. See [Fork authority and adoption posture](docs/fork-posture.md).
+
 DeDi is an open protocol for publishing, discovering, and consuming **public, machine-readable directory data** needed to verify participants, memberships, public keys, endpoints, and revocation status across ecosystems.
 
 The project focus is straightforward: **make authoritative directory infrastructure implementable, testable, and auditable**. In practical terms, that means a DeDi deployment should not just expose data. It should make clear:
@@ -45,6 +47,7 @@ DeDi provides a common protocol and schema surface for that operational trust la
 - **Evaluate interoperability:** [interoperability positioning](docs/interoperability.md) and [deployment models](docs/deployment-models.md)
 - **Assess implementation quality:** [conformance overview](conformance/README.md), [profiles](conformance/profiles/), and [validation guide](conformance/validation-guide.md)
 - **Understand governance:** [governance model](GOVERNANCE.md), [authority model](governance/authority-model.md), and [delegation schema](governance/delegation-schema.json)
+- **Understand this fork:** [fork authority and adoption posture](docs/fork-posture.md)
 
 ## What DeDi is
 
@@ -136,6 +139,7 @@ See [docs/getting-started/quickstart.md](docs/getting-started/quickstart.md) for
 - [Adoption guide](docs/adoption-guide.md)
 - [Deployment models](docs/deployment-models.md)
 - [Interoperability positioning](docs/interoperability.md)
+- [Fork authority and adoption posture](docs/fork-posture.md)
 
 ### Conformance and assurance
 - [Conformance overview](conformance/README.md)
