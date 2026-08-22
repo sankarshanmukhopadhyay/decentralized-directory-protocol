@@ -1,0 +1,18 @@
+id: publishing-lifecycle
+profile: publishing
+status: experimental-non-normative
+fixtures:
+  cases: conformance/vectors/publishing/lifecycle.json
+assertions:
+  - PUB-014
+  - PUB-015
+  - PUB-016
+  - PUB-017
+  - PUB-018
+  - PUB-019
+execution:
+  command: python scripts/verify_publishing_lifecycle.py
+expected: pass
+notes: >-
+  Deterministic offline lifecycle policy checks. Live transport, TLS origin binding,
+  distributed clock skew, and cache propagation remain outside this increment.
