@@ -1,9 +1,8 @@
 # Site identity
-title: DeDi Documentation
+title: DeDi Implementation & Assurance Workbench
 description: >-
-  Open protocol for publishing, discovering, and consuming public,
-  machine-readable directory data needed to verify participants,
-  memberships, public keys, and revocation status across ecosystems.
+  Fork-local implementation, operations, verification, testing, and assurance
+  workbench around the upstream Decentralized Directory Protocol (DeDi).
 url: "https://sankarshanmukhopadhyay.github.io"
 baseurl: "/decentralized-directory-protocol"
 
@@ -26,13 +25,16 @@ nav_sort: case_insensitive
 
 # Aux links (top-right header)
 aux_links:
-  "GitHub ↗":
+  "Fork on GitHub ↗":
     - "https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol"
+  "Upstream DeDi ↗":
+    - "https://github.com/LF-Decentralized-Trust-labs/decentralized-directory-protocol"
 aux_links_new_tab: true
 
 # Footer
 footer_content: >-
-  DeDi is open source under the
+  Fork-local implementation and assurance workbench around upstream DeDi.
+  Open source under the
   <a href="https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol/blob/main/LICENSE">Apache 2.0 License</a>.
 last_edit_timestamp: true
 last_edit_time_format: "%b %e %Y"
