@@ -1,0 +1,10 @@
+{
+  "artifact": "fork-local-conformance-evidence",
+  "profile": "publishing",
+  "scope": "lifecycle-and-freshness",
+  "upstream_ref": "72d913fb4d17507891a6fea5db1f49ef7b3f461d",
+  "checks": ["PUB-014", "PUB-015", "PUB-016", "PUB-017", "PUB-018", "PUB-019"],
+  "runner": "python scripts/verify_publishing_lifecycle.py",
+  "status": "executable",
+  "normative": false
+}
