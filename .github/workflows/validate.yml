@@ -26,3 +26,6 @@ jobs:
 
       - name: Verify publishing cryptography
         run: python scripts/verify_publishing_crypto.py
+
+      - name: Verify publishing lifecycle
+        run: python scripts/verify_publishing_lifecycle.py

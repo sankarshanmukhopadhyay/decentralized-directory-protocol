@@ -1,0 +1,82 @@
+{
+  "evaluation_time": "2026-08-22T06:30:00Z",
+  "cases": [
+    {
+      "id": "fresh-manifest",
+      "kind": "manifest",
+      "next_update": "2026-08-23T06:30:00Z",
+      "expected": "accept"
+    },
+    {
+      "id": "stale-manifest",
+      "kind": "manifest",
+      "next_update": "2026-08-21T06:30:00Z",
+      "expected": "reject-stale"
+    },
+    {
+      "id": "fresh-file",
+      "kind": "file",
+      "next_update": "2026-08-23T06:30:00Z",
+      "registry_state": "live",
+      "expected": "accept"
+    },
+    {
+      "id": "stale-file",
+      "kind": "file",
+      "next_update": "2026-08-21T06:30:00Z",
+      "registry_state": "live",
+      "expected": "reject-stale"
+    },
+    {
+      "id": "inactive-registry",
+      "kind": "file",
+      "next_update": "2026-08-23T06:30:00Z",
+      "registry_state": "inactive",
+      "expected": "reject-inactive"
+    },
+    {
+      "id": "rollback-manifest",
+      "kind": "manifest-sequence",
+      "observed_updated_at": "2026-08-22T05:00:00Z",
+      "candidate_updated_at": "2026-08-20T05:00:00Z",
+      "expected": "reject-rollback"
+    },
+    {
+      "id": "forward-manifest",
+      "kind": "manifest-sequence",
+      "observed_updated_at": "2026-08-20T05:00:00Z",
+      "candidate_updated_at": "2026-08-22T05:00:00Z",
+      "expected": "accept"
+    },
+    {
+      "id": "removed-key",
+      "kind": "key-state",
+      "previous_keys": ["key-2026-01", "key-2026-02"],
+      "current_keys": ["key-2026-02"],
+      "file_key": "key-2026-01",
+      "expected": "reject-removed-key"
+    },
+    {
+      "id": "rotation-overlap",
+      "kind": "key-state",
+      "previous_keys": ["key-2026-01"],
+      "current_keys": ["key-2026-01", "key-2026-02"],
+      "file_key": "key-2026-01",
+      "expected": "accept"
+    },
+    {
+      "id": "authority-refresh-failure-before-expiry",
+      "kind": "refresh",
+      "cached_next_update": "2026-08-23T06:30:00Z",
+      "refresh_succeeded": false,
+      "expected": "accept-cached"
+    },
+    {
+      "id": "authority-refresh-failure-after-expiry",
+      "kind": "refresh",
+      "cached_next_update": "2026-08-21T06:30:00Z",
+      "refresh_succeeded": false,
+      "expected": "reject-unavailable-authority"
+    }
+  ]
+}

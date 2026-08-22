@@ -5,9 +5,9 @@ upstream:
   ref: 72d913fb4d17507891a6fea5db1f49ef7b3f461d
   synchronized_at: 2026-08-22
 purpose: >-
-  Exercise structural, cross-artifact, and cryptographic invariants for the upstream
-  origin-hosted DeDi publishing model without claiming upstream certification or
-  redefining protocol semantics.
+  Exercise structural, cross-artifact, cryptographic, freshness, and lifecycle invariants
+  for the upstream origin-hosted DeDi publishing model without claiming upstream
+  certification or redefining protocol semantics.
 checks:
   - id: PUB-001
     requirement: manifest-required-fields
@@ -48,7 +48,25 @@ checks:
   - id: PUB-013
     requirement: referenced-file-digest
     description: The SHA-256 digest of the hosted file matches the digest committed by the manifest.
+  - id: PUB-014
+    requirement: freshness-enforcement
+    description: A manifest or DeDi file at or beyond next_update is rejected as stale.
+  - id: PUB-015
+    requirement: inactive-registry-enforcement
+    description: A registry in inactive state is not accepted for current reliance.
+  - id: PUB-016
+    requirement: rollback-detection
+    description: A candidate manifest with updated_at earlier than the last accepted state is rejected.
+  - id: PUB-017
+    requirement: rotation-overlap
+    description: A previously used key remains acceptable while it is still present in the current manifest during rotation overlap.
+  - id: PUB-018
+    requirement: removed-key-rejection
+    description: A file key removed from the current manifest is rejected even if it was previously authorized.
+  - id: PUB-019
+    requirement: cached-authority-failure-policy
+    description: Refresh failure may use still-fresh cached authority but must fail closed once the cached authority is stale.
 limitations:
   - Live network retrieval and TLS origin binding are not yet exercised.
-  - Freshness enforcement, rollback detection, and time-based key rotation scenarios are deferred to the lifecycle profile increment.
+  - Lifecycle vectors are deterministic offline policy checks and do not simulate distributed clock skew or transport outages.
   - Passing this profile is a fork-local validation result, not an upstream DeDi certification.
