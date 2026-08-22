@@ -1,0 +1,41 @@
+profile: publishing
+status: experimental-non-normative
+upstream:
+  repository: LF-Decentralized-Trust-labs/decentralized-directory-protocol
+  ref: 72d913fb4d17507891a6fea5db1f49ef7b3f461d
+  synchronized_at: 2026-08-22
+purpose: >-
+  Exercise document-shape and cross-artifact invariants for the upstream origin-hosted
+  DeDi publishing model without claiming upstream certification or redefining protocol semantics.
+checks:
+  - id: PUB-001
+    requirement: manifest-required-fields
+    description: The example manifest exposes the required publishing fields and at least one key.
+  - id: PUB-002
+    requirement: manifest-proof-key-binding
+    description: The manifest proof references a key declared by the manifest.
+  - id: PUB-003
+    requirement: unique-registry-names
+    description: Registry names are unique across referenced and inline manifest entries.
+  - id: PUB-004
+    requirement: dedi-file-schema-shape
+    description: Hosted and inline DeDi files satisfy the synchronized DeDi file JSON Schema.
+  - id: PUB-005
+    requirement: publisher-domain-binding
+    description: Each file identifies the same publisher domain as the manifest.
+  - id: PUB-006
+    requirement: publisher-key-binding
+    description: Each file embeds a publisher key declared by the manifest.
+  - id: PUB-007
+    requirement: proof-key-binding
+    description: Each file proof references the embedded publisher key identifier.
+  - id: PUB-008
+    requirement: unique-record-names
+    description: Record names are unique within each registry file.
+  - id: PUB-009
+    requirement: referenced-example-coverage
+    description: Hosted examples correspond to registry entries referenced by the manifest.
+limitations:
+  - Illustrative JWS values are not cryptographically verified.
+  - Network retrieval, TLS origin binding, freshness enforcement, and digest recomputation are not yet exercised.
+  - Passing this profile is a fork-local validation result, not an upstream DeDi certification.
