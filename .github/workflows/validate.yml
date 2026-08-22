@@ -23,3 +23,6 @@ jobs:
 
       - name: Run repository validation
         run: python scripts/validate_artifacts.py
+
+      - name: Verify publishing cryptography
+        run: python scripts/verify_publishing_crypto.py
