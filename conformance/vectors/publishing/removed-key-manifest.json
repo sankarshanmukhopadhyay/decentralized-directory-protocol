@@ -1,0 +1,28 @@
+{
+  "dedi_version": "0.1",
+  "type": "dedi-manifest",
+  "domain": "publisher.example",
+  "name": "Cryptographic publishing fixture",
+  "keys": [
+    {
+      "kid": "replacement-key",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "ebVWLo_mVPlAeLES6KmLp5AfhTrmlb7X4OORC60ElmQ"
+    }
+  ],
+  "updated_at": "2026-08-22T00:00:00Z",
+  "next_update": "2026-09-01T00:00:00Z",
+  "files": [
+    {
+      "registry": "keys",
+      "url": "https://publisher.example/dedi/keys.json",
+      "digest": "sha-256:7715690078c71a339a5566377ac4e7183091a111413683094414784aa4348756"
+    }
+  ],
+  "proof": {
+    "verification_method": "key-2026-01",
+    "canonicalization": "JCS",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..8-2Wewj3V_N4kfiMurBh9ComGUgli4N5roulawe7KHn9O_SK_N8tYaUKU6fiztXhZZNTgq9_5Yums2pUYXF0BA"
+  }
+}
