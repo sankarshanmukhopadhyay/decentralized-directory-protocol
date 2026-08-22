@@ -29,3 +29,6 @@ jobs:
 
       - name: Verify publishing lifecycle
         run: python scripts/verify_publishing_lifecycle.py
+
+      - name: Run publisher-indexer-verifier scenario
+        run: python scripts/run_publishing_scenario.py
