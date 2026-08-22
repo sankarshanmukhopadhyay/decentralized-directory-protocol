@@ -5,8 +5,9 @@ upstream:
   ref: 72d913fb4d17507891a6fea5db1f49ef7b3f461d
   synchronized_at: 2026-08-22
 purpose: >-
-  Exercise document-shape and cross-artifact invariants for the upstream origin-hosted
-  DeDi publishing model without claiming upstream certification or redefining protocol semantics.
+  Exercise structural, cross-artifact, and cryptographic invariants for the upstream
+  origin-hosted DeDi publishing model without claiming upstream certification or
+  redefining protocol semantics.
 checks:
   - id: PUB-001
     requirement: manifest-required-fields
@@ -35,7 +36,19 @@ checks:
   - id: PUB-009
     requirement: referenced-example-coverage
     description: Hosted examples correspond to registry entries referenced by the manifest.
+  - id: PUB-010
+    requirement: jcs-detached-jws-verification
+    description: Valid manifest and file fixtures verify using RFC 8785 JCS and detached Ed25519 JWS.
+  - id: PUB-011
+    requirement: tamper-detection
+    description: A content mutation with the original signature is rejected.
+  - id: PUB-012
+    requirement: key-removal-enforcement
+    description: A file signed by a key removed from the current manifest is rejected.
+  - id: PUB-013
+    requirement: referenced-file-digest
+    description: The SHA-256 digest of the hosted file matches the digest committed by the manifest.
 limitations:
-  - Illustrative JWS values are not cryptographically verified.
-  - Network retrieval, TLS origin binding, freshness enforcement, and digest recomputation are not yet exercised.
+  - Live network retrieval and TLS origin binding are not yet exercised.
+  - Freshness enforcement, rollback detection, and time-based key rotation scenarios are deferred to the lifecycle profile increment.
   - Passing this profile is a fork-local validation result, not an upstream DeDi certification.
