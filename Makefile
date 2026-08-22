@@ -8,6 +8,7 @@ setup:
 validate:
 	$(PYTHON) scripts/validate_artifacts.py
 	$(PYTHON) scripts/verify_publishing_crypto.py
+	$(PYTHON) scripts/verify_publishing_lifecycle.py
 
 serve:
 	$(PYTHON) reference-impl/server/server.py
