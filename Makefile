@@ -1,15 +1,15 @@
 PYTHON ?= python3
 
-.PHONY: setup validate serve quickstart scenario clean
+.PHONY: setup validate conformance serve quickstart scenario clean
 
 setup:
 	$(PYTHON) -m pip install -r requirements-dev.txt
 
 validate:
-	$(PYTHON) scripts/validate_artifacts.py
-	$(PYTHON) scripts/verify_publishing_crypto.py
-	$(PYTHON) scripts/verify_publishing_lifecycle.py
-	$(PYTHON) scripts/run_publishing_scenario.py
+	$(PYTHON) scripts/run_conformance.py
+
+conformance:
+	$(PYTHON) scripts/run_conformance.py
 
 serve:
 	$(PYTHON) reference-impl/server/server.py
@@ -21,4 +21,4 @@ scenario:
 	$(PYTHON) scripts/run_publishing_scenario.py
 
 clean:
-	rm -f evidence/quickstart-run.json evidence/resolution-run.json evidence/signature-verification.json evidence/revocation-check.json evidence/publisher-indexer-verifier.json
+	rm -f evidence/quickstart-run.json evidence/resolution-run.json evidence/signature-verification.json evidence/revocation-check.json evidence/publisher-indexer-verifier.json evidence/conformance-run.json

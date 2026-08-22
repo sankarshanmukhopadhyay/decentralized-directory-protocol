@@ -21,14 +21,5 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
 
-      - name: Run repository validation
-        run: python scripts/validate_artifacts.py
-
-      - name: Verify publishing cryptography
-        run: python scripts/verify_publishing_crypto.py
-
-      - name: Verify publishing lifecycle
-        run: python scripts/verify_publishing_lifecycle.py
-
-      - name: Run publisher-indexer-verifier scenario
-        run: python scripts/run_publishing_scenario.py
+      - name: Run evidence-producing conformance suite
+        run: python scripts/run_conformance.py
