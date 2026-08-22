@@ -1,0 +1,24 @@
+id: publishing-origin-hosted
+profile: publishing
+status: experimental-non-normative
+fixtures:
+  manifest: examples/dedi.index.json
+  hosted_files:
+    - examples/dedi.public-keys.json
+    - examples/dedi.revocations.json
+assertions:
+  - PUB-001
+  - PUB-002
+  - PUB-003
+  - PUB-004
+  - PUB-005
+  - PUB-006
+  - PUB-007
+  - PUB-008
+  - PUB-009
+execution:
+  command: python scripts/validate_artifacts.py
+expected: pass
+notes: >-
+  This test intentionally validates offline structural and cross-artifact invariants only.
+  Cryptographic verification and live origin retrieval are deferred to a later profile increment.
