@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeDi Fork Conformance Run Evidence",
+  "type": "object",
+  "required": [
+    "artifact",
+    "profile",
+    "status",
+    "normative",
+    "upstream_ref",
+    "repository_ref",
+    "generated_at",
+    "checks",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "artifact": {"const": "fork-local-conformance-run"},
+    "profile": {"type": "string"},
+    "status": {"enum": ["pass", "fail"]},
+    "normative": {"const": false},
+    "upstream_ref": {"type": "string", "minLength": 7},
+    "repository_ref": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "command", "status", "returncode"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "command": {"type": "string"},
+          "status": {"enum": ["pass", "fail"]},
+          "returncode": {"type": "integer"},
+          "stdout": {"type": "string"},
+          "stderr": {"type": "string"}
+        }
+      }
+    }
+  }
+}
