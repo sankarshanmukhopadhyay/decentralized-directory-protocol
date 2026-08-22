@@ -1,0 +1,40 @@
+{
+  "dedi_version": "0.1",
+  "type": "dedi-file",
+  "source_url": "https://publisher.example/dedi/keys.json",
+  "next_update": "2026-09-01T00:00:00Z",
+  "publisher": {
+    "domain": "publisher.example",
+    "key": {
+      "kid": "key-2026-01",
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "ebVWLo_mVPlAeLES6KmLp5AfhTrmlb7X4OORC60ElmQ"
+    }
+  },
+  "namespace": "publisher.example",
+  "registry": {
+    "name": "keys",
+    "schema": {
+      "type": "object",
+      "required": ["id", "public_key"],
+      "properties": {
+        "id": {"type": "string"},
+        "public_key": {"type": "string"}
+      }
+    },
+    "state": "live",
+    "updated_at": "2026-08-22T00:00:00Z"
+  },
+  "records": [
+    {
+      "record_name": "service-a",
+      "details": {"id": "service-b", "public_key": "z6MkExample"}
+    }
+  ],
+  "proof": {
+    "verification_method": "key-2026-01",
+    "canonicalization": "JCS",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..9rDiKlfWiwUXxz5Snun6Aip5EuV_5KYEDGnNGe9tPh8AY10PslmNMuNF48_Cz7a2LtJA9h4CHC2-A29sq8d5CA"
+  }
+}
