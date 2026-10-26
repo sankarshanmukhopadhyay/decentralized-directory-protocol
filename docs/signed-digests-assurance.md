@@ -30,9 +30,9 @@ The new tests cover external precedence, inline fallback, no commitment, tamperi
 
 ## Known gaps
 
-- Upstream Git commit ancestry is not yet synchronized to the current head; the files were reconciled against `4804d835d2d0109781536b629133a592d0a08590`, whereas existing conformance evidence remains pinned to `72d913fb4d17507891a6fea5db1f49ef7b3f461d`.
-- The digest selection/refresh helper is not yet connected to the publisher→indexer→verifier scenario. The scenario's existing evidence cannot be interpreted as digests-document coverage.
-- Dedicated rollback, cache race, clock skew, live HTTP/TLS and multi-indexer behaviors are not yet established.
-- The new test cases are currently reported by a suite-level conformance runner step, not as individually attributed profile check results.
+- Upstream ancestry has been reconciled through a two-parent Git merge against `4804d835d2d0109781536b629133a592d0a08590`. The conformance profile, runner and composed-scenario upstream references are aligned to that commit.
+- The publisher→indexer→verifier scenario now runs a deterministic signed external-digest integration path and includes digest provenance and the effective authority expiry in its evidence. This is offline composed verification, not a live network deployment.
+- Deterministic digests-document rollback policy vectors are included; cache races, clock skew, live HTTP/TLS and multi-indexer behavior remain outside executable coverage.
+- New cases PUB-020 through PUB-027 have explicit bindings to executable test or scenario identifiers in conformance evidence. Older PUB-001 through PUB-019 remain marked `not-individually-attributed`; a passing suite-level step must not be interpreted as independent proof of each individual check.
 
 Track completion and evidence in [issue #9](https://github.com/sankarshanmukhopadhyay/decentralized-directory-protocol/issues/9).
