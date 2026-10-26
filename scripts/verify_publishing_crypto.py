@@ -112,6 +112,8 @@ def verify_digest_with_refresh(content: bytes, entry: dict, manifest: dict,
         if expires <= instant:
             raise ValueError("digest authority is stale")
 
+    if digests is None and manifest.get("digests"):
+        raise ValueError("manifest declares external digests but no authenticated digest document was supplied")
     if digests is not None:
         verify_digests_document(digests, manifest)
         current(digests)
