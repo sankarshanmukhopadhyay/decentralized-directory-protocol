@@ -11,21 +11,44 @@
     "repository_ref",
     "generated_at",
     "checks",
-    "steps"
+    "steps",
+    "check_evidence"
   ],
   "additionalProperties": false,
   "properties": {
-    "artifact": {"const": "fork-local-conformance-run"},
-    "profile": {"type": "string"},
-    "status": {"enum": ["pass", "fail"]},
-    "normative": {"const": false},
-    "upstream_ref": {"type": "string", "minLength": 7},
-    "repository_ref": {"type": "string", "minLength": 1},
-    "generated_at": {"type": "string", "format": "date-time"},
+    "artifact": {
+      "const": "fork-local-conformance-run"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "normative": {
+      "const": false
+    },
+    "upstream_ref": {
+      "type": "string",
+      "minLength": 7
+    },
+    "repository_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "checks": {
       "type": "array",
       "minItems": 1,
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "uniqueItems": true
     },
     "steps": {
@@ -33,15 +56,65 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["name", "command", "status", "returncode"],
+        "required": [
+          "name",
+          "command",
+          "status",
+          "returncode"
+        ],
         "additionalProperties": false,
         "properties": {
-          "name": {"type": "string"},
-          "command": {"type": "string"},
-          "status": {"enum": ["pass", "fail"]},
-          "returncode": {"type": "integer"},
-          "stdout": {"type": "string"},
-          "stderr": {"type": "string"}
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "fail"
+            ]
+          },
+          "returncode": {
+            "type": "integer"
+          },
+          "stdout": {
+            "type": "string"
+          },
+          "stderr": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "check_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "state"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "verified",
+              "unverified",
+              "not-run",
+              "not-individually-attributed"
+            ]
+          },
+          "step": {
+            "type": "string"
+          },
+          "test_identifier": {
+            "type": "string"
+          }
         }
       }
     }

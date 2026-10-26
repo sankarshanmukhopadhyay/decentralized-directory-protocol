@@ -68,16 +68,76 @@ def verify_file_against_manifest(file_obj: dict, manifest: dict) -> None:
     verify_detached_jws(file_obj, file_key)
 
 
+def verify_digests_document(digests: dict, manifest: dict) -> None:
+    """Authenticate a digests document against the current publisher authority."""
+    if digests.get("domain") != manifest.get("domain"):
+        raise ValueError("digests document domain differs from manifest")
+    key_id = digests.get("proof", {}).get("verification_method")
+    authorized = next((key for key in manifest.get("keys", []) if key.get("kid") == key_id), None)
+    if authorized is None:
+        raise ValueError("digests document signer is not currently authorized")
+    verify_detached_jws(digests, authorized)
+
+
+def select_digest(entry: dict, digests: dict | None) -> tuple[str | None, str]:
+    """Return commitment and provenance; no commitment is not verified integrity."""
+    name = entry["registry"]
+    if digests is not None and name in digests.get("digests", {}):
+        return digests["digests"][name], "external-digests-document"
+    if "digest" in entry:
+        return entry["digest"], "manifest-inline"
+    return None, "none"
+
+
+def check_digest_bytes(content: bytes, commitment: str | None) -> str:
+    if commitment is None:
+        return "not-committed"
+    parts = commitment.split(":", 1)
+    if len(parts) != 2 or parts[0] != "sha-256" or len(parts[1]) != 64:
+        raise ValueError("unsupported or malformed digest")
+    if hashlib.sha256(content).hexdigest() != parts[1]:
+        raise ValueError("referenced file digest mismatch")
+    return "verified"
+
+
+def verify_digest_with_refresh(content: bytes, entry: dict, manifest: dict,
+                               digests: dict | None = None, refresh=None,
+                               now=None) -> tuple[str, str]:
+    """Verify commitment with authenticated, fresh authority and a single refresh."""
+    from datetime import datetime, timezone
+    instant = now or datetime.now(timezone.utc)
+
+    def current(document: dict) -> None:
+        expires = datetime.fromisoformat(document["next_update"].replace("Z", "+00:00"))
+        if expires <= instant:
+            raise ValueError("digest authority is stale")
+
+    if digests is None and manifest.get("digests"):
+        raise ValueError("manifest declares external digests but no authenticated digest document was supplied")
+    if digests is not None:
+        verify_digests_document(digests, manifest)
+        current(digests)
+    commitment, source = select_digest(entry, digests)
+    try:
+        return check_digest_bytes(content, commitment), source
+    except ValueError as exc:
+        if "mismatch" not in str(exc) or refresh is None:
+            raise
+        refreshed = refresh()
+        if refreshed is None:
+            raise ValueError("digest source refresh unavailable") from exc
+        verify_digests_document(refreshed, manifest)
+        current(refreshed)
+        refreshed_commitment, refreshed_source = select_digest(entry, refreshed)
+        return check_digest_bytes(content, refreshed_commitment), refreshed_source
+
+
 def verify_digest(file_path: Path, manifest: dict, registry_name: str) -> None:
     entry = next((item for item in manifest["files"] if item.get("registry") == registry_name), None)
     if not entry:
         raise ValueError(f"manifest does not reference registry {registry_name}")
-    algorithm, expected = entry["digest"].split(":", 1)
-    if algorithm != "sha-256":
-        raise ValueError("fixture verifier supports sha-256 digests only")
-    actual = hashlib.sha256(file_path.read_bytes()).hexdigest()
-    if actual != expected:
-        raise ValueError("referenced file digest does not match manifest")
+    if check_digest_bytes(file_path.read_bytes(), entry.get("digest")) != "verified":
+        raise ValueError("fixture file lacks digest commitment")
 
 
 def expect_failure(label: str, func) -> None:
