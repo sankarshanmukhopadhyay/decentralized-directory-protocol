@@ -158,7 +158,7 @@ def validate_publishing_model():
             registry_names.append(registry_name)
             inline_files.append((registry_name, entry))
         else:
-            required_reference_fields = {'registry', 'url', 'digest'}
+            required_reference_fields = {'registry', 'url'}
             missing_reference_fields = required_reference_fields - set(entry)
             if missing_reference_fields:
                 raise SystemExit(
@@ -170,6 +170,29 @@ def validate_publishing_model():
 
     if len(registry_names) != len(set(registry_names)):
         raise SystemExit('Publishing manifest contains duplicate registry names')
+
+    # Upstream external digests are signed documents, with separately bounded authority.
+    digests_url = manifest.get('digests')
+    if digests_url is not None:
+        from urllib.parse import urlparse
+        parsed = urlparse(digests_url)
+        if parsed.scheme != 'https' or not parsed.netloc:
+            raise SystemExit('Publishing manifest digests URL must be absolute HTTPS')
+        digests_path = ROOT / 'examples/dedi.digests.json'
+        digests = load_json(digests_path)
+        digests_schema = load_json(ROOT / 'schemas/dedi-digests.schema.json')
+        errors = schema_errors(digests_schema, digests)
+        if errors:
+            raise SystemExit(f'Digests document failed schema validation: {errors[0].message}')
+        if digests['domain'] != manifest['domain']:
+            raise SystemExit('Digests document domain differs from manifest')
+        if digests['proof']['verification_method'] not in manifest_key_ids:
+            raise SystemExit('Digests document uses an undeclared signing key')
+        if digests['proof']['canonicalization'] != 'JCS':
+            raise SystemExit('Digests document must declare JCS canonicalization')
+        unknown_registries = set(digests['digests']) - set(referenced_registries)
+        if unknown_registries:
+            raise SystemExit(f'Digests document references undeclared registries: {sorted(unknown_registries)}')
 
     for registry_name, inline_file in inline_files:
         validate_dedi_file(
@@ -209,6 +232,7 @@ def validate_required_paths():
         ROOT / 'examples/dedi.revocations.json',
         ROOT / 'schemas/dedi-file.schema.json',
         ROOT / 'schemas/dedi-manifest.schema.json',
+        ROOT / 'schemas/dedi-digests.schema.json',
         ROOT / 'spec/v0.1/README.md',
         ROOT / 'conformance/profiles/base.yaml',
         ROOT / 'conformance/profiles/secure.yaml',
