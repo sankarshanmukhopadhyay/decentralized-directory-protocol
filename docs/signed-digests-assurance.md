@@ -1,6 +1,7 @@
 ---
 title: Signed digests assurance
-parent: Test
+nav_order: 7
+permalink: /signed-digests-assurance/
 ---
 
 # Signed digests: fork-local assurance
