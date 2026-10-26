@@ -202,6 +202,8 @@ def main() -> None:
     evidence = run()
     EVIDENCE.write_text(json.dumps(evidence, indent=2) + "\n")
     print("Publisher -> indexer -> verifier scenario passed.")
+    for step in evidence["steps"]:
+        print("SCENARIO " + step["action"] + ": " + step["result"])
     print(f"Evidence: {EVIDENCE.relative_to(ROOT)}")
 
 
