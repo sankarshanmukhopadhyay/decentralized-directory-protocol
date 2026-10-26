@@ -61,6 +61,12 @@ class SignedDigestsContract(unittest.TestCase):
             self.content, self.entry, self.manifest, doc, now=self.now),
             ("verified", "external-digests-document"))
 
+    def test_declared_external_source_must_be_resolved(self):
+        manifest = dict(self.manifest, digests="https://example.org/dedi/dedi.digests.json")
+        with self.assertRaisesRegex(ValueError, "no authenticated digest document"):
+            verify_digest_with_refresh(
+                self.content, self.entry, manifest, now=self.now)
+
     def test_inline_fallback(self):
         entry = {"registry": "keys", "digest": self.digest}
         self.assertEqual(verify_digest_with_refresh(
