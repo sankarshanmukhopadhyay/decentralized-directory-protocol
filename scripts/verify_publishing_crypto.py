@@ -100,9 +100,21 @@ def check_digest_bytes(content: bytes, commitment: str | None) -> str:
     return "verified"
 
 
-def verify_digest_with_refresh(content: bytes, entry: dict, digests: dict | None,
-                               refresh=None) -> tuple[str, str]:
-    """Refresh the authoritative commitment on mismatch; never fall back on conflict."""
+def verify_digest_with_refresh(content: bytes, entry: dict, manifest: dict,
+                               digests: dict | None = None, refresh=None,
+                               now=None) -> tuple[str, str]:
+    """Verify commitment with authenticated, fresh authority and a single refresh."""
+    from datetime import datetime, timezone
+    instant = now or datetime.now(timezone.utc)
+
+    def current(document: dict) -> None:
+        expires = datetime.fromisoformat(document["next_update"].replace("Z", "+00:00"))
+        if expires <= instant:
+            raise ValueError("digest authority is stale")
+
+    if digests is not None:
+        verify_digests_document(digests, manifest)
+        current(digests)
     commitment, source = select_digest(entry, digests)
     try:
         return check_digest_bytes(content, commitment), source
@@ -112,7 +124,8 @@ def verify_digest_with_refresh(content: bytes, entry: dict, digests: dict | None
         refreshed = refresh()
         if refreshed is None:
             raise ValueError("digest source refresh unavailable") from exc
-        # Caller must cryptographically authenticate refreshed state first.
+        verify_digests_document(refreshed, manifest)
+        current(refreshed)
         refreshed_commitment, refreshed_source = select_digest(entry, refreshed)
         return check_digest_bytes(content, refreshed_commitment), refreshed_source
 
