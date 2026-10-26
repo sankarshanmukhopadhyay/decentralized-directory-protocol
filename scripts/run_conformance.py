@@ -21,6 +21,7 @@ STEPS = [
     ("publishing-cryptography", [sys.executable, "scripts/verify_publishing_crypto.py"]),
     ("publishing-lifecycle", [sys.executable, "scripts/verify_publishing_lifecycle.py"]),
     ("publisher-indexer-verifier", [sys.executable, "scripts/run_publishing_scenario.py"]),
+    ("signed-digests-regressions", [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_signed_digests.py"]),
 ]
 
 
