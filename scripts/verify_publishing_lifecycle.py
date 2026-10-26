@@ -13,14 +13,14 @@ def parse_ts(value: str) -> datetime:
 def evaluate(case, now):
     kind = case['kind']
 
-    if kind in {'manifest', 'file'}:
+    if kind in {'manifest', 'file', 'digests'}:
         if parse_ts(case['next_update']) <= now:
             return 'reject-stale'
         if kind == 'file' and case.get('registry_state') != 'live':
             return 'reject-inactive'
         return 'accept'
 
-    if kind == 'manifest-sequence':
+    if kind in {'manifest-sequence', 'digests-sequence'}:
         observed = parse_ts(case['observed_updated_at'])
         candidate = parse_ts(case['candidate_updated_at'])
         return 'reject-rollback' if candidate < observed else 'accept'
