@@ -58,6 +58,10 @@ Freshness, inactive registries, rollback, rotation overlap, removed-key rejectio
 
 The publisher → indexer → verifier scenario checks that verified authority and freshness constraints survive indexing and remain visible to the verifier's reliance decision.
 
+## Signed digest assurance
+
+The [signed-digests assurance guide](signed-digests-assurance) explains external digest precedence, optional inline commitments, authenticated mismatch refresh, executable negative cases, and the current limits of fork-local evidence.
+
 ## Reading results correctly
 
 Passing this suite means the tested fork state satisfied the fork-local profile at the recorded repository and upstream refs. It does **not** mean that upstream DeDi has certified the implementation or adopted fork-local requirements.
