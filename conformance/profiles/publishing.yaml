@@ -2,8 +2,8 @@ profile: publishing
 status: experimental-non-normative
 upstream:
   repository: LF-Decentralized-Trust-labs/decentralized-directory-protocol
-  ref: 72d913fb4d17507891a6fea5db1f49ef7b3f461d
-  synchronized_at: 2026-08-22
+  ref: 4804d835d2d0109781536b629133a592d0a08590
+  synchronized_at: 2026-10-26
 purpose: >-
   Exercise structural, cross-artifact, cryptographic, freshness, and lifecycle invariants
   for the upstream origin-hosted DeDi publishing model without claiming upstream
@@ -47,7 +47,7 @@ checks:
     description: A file signed by a key removed from the current manifest is rejected.
   - id: PUB-013
     requirement: referenced-file-digest
-    description: The SHA-256 digest of the hosted file matches the digest committed by the manifest.
+    description: The SHA-256 digest of a hosted file matches the selected applicable digest commitment.
   - id: PUB-014
     requirement: freshness-enforcement
     description: A manifest or DeDi file at or beyond next_update is rejected as stale.
@@ -66,6 +66,30 @@ checks:
   - id: PUB-019
     requirement: cached-authority-failure-policy
     description: Refresh failure may use still-fresh cached authority but must fail closed once the cached authority is stale.
+  - id: PUB-020
+    requirement: external-digest-precedence
+    description: A valid signed external digest wins over a conflicting manifest inline digest.
+  - id: PUB-021
+    requirement: absence-of-commitment
+    description: A registry without a commitment is reported as uncommitted, not digest verified.
+  - id: PUB-022
+    requirement: digest-authority-binding
+    description: Wrong-domain or removed-key digest documents are rejected.
+  - id: PUB-023
+    requirement: digests-freshness
+    description: Expired signed digests documents are not accepted.
+  - id: PUB-024
+    requirement: digests-rollback
+    description: Digest authority versions older than the accepted state are rejected by lifecycle policy.
+  - id: PUB-025
+    requirement: mismatch-refresh
+    description: Mismatch can resolve only after an authenticated digest refresh.
+  - id: PUB-026
+    requirement: persistent-mismatch-rejection
+    description: A persistent digest mismatch remains rejected after refresh.
+  - id: PUB-027
+    requirement: composed-digest-provenance
+    description: Signed digest source and effective authority horizon survive indexer to verifier reliance.
 limitations:
   - Live network retrieval and TLS origin binding are not yet exercised.
   - Lifecycle vectors are deterministic offline policy checks and do not simulate distributed clock skew or transport outages.
